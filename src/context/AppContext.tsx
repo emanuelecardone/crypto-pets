@@ -106,8 +106,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [alienRelicFound, setAlienRelicFound] = useState<boolean>(false);
   const [guardianEnigmaSolved, setGuardianEnigmaSolved] =
     useState<boolean>(false);
-  const [userWallet, setUserWallet] = useState<number>(0);
-  const [userGems, setUserGems] = useState<number>(0);
+  const [userWallet, setUserWallet] = useState<number>(100000000);
+  const [userGems, setUserGems] = useState<number>(100000000);
   const [petCount, setPetCount] = useState<number>(0);
   const totalCells = 400;
   const [userPosition, setUserPosition] = useState<number>(0);

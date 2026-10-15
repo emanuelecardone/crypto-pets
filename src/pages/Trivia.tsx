@@ -244,7 +244,10 @@ const Trivia = () => {
                   <Box
                     key={category.id}
                     sx={{
-                      width: "calc(20% - 10px)",
+                      width: {
+                        xs: "calc(100% - 10px)",
+                        md: "calc(20% - 10px)",
+                      },
                       height: "30%",
                       border: "2px solid black",
                       borderRadius: "5px",
@@ -252,6 +255,7 @@ const Trivia = () => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
+                      textAlign: "center",
                     }}
                     onClick={() => {
                       setCategoryIsChosen(true);
