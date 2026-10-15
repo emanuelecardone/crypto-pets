@@ -101,6 +101,13 @@ const SpaceCenter = () => {
               backgroundColor: "background.secondary",
             }}
           >
+            {isLoading && <p>Receiving data from NASA...</p>}
+            {isError && (
+              <Typography variant="body1">
+                Systems are offline. Cannot figure out your cosmic bonus.
+              </Typography>
+            )}
+
             {asteroidCount !== undefined &&
               Array.from({ length: asteroidCount }).map((_, index) => (
                 <Box
@@ -116,12 +123,6 @@ const SpaceCenter = () => {
               ))}
           </Box>
         </Box>
-        {isLoading && <p>Receiving data from NASA...</p>}
-        {isError && (
-          <Typography variant="body1">
-            Systems are offline. Cannot figure out your cosmic bonus.
-          </Typography>
-        )}
 
         {asteroidCount !== undefined && (
           <Box className="telemetry-box">

@@ -3,7 +3,7 @@ export const fetchTodayAsteroidsCount = async (): Promise<number> => {
 
   const localDate = new Date().toLocaleDateString("fr-CA");
 
-  const url = `https://nasa.gov{localDate}&end_date=${localDate}&api_key=${NASA_API_KEY}`;
+  const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${localDate}&end_date=${localDate}&api_key=${NASA_API_KEY}`;
 
   try {
     const response = await fetch(url);
