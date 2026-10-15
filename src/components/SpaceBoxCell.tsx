@@ -138,6 +138,7 @@ const SpaceBoxCell = ({
               p: 1,
               zIndex: 50000,
               borderRadius: "5px",
+              overflowY: "hidden",
             }}
           >
             <Typography variant="body1" sx={{ textAlign: "center" }}>
@@ -159,6 +160,7 @@ const SpaceBoxCell = ({
               p: 1,
               zIndex: 50000,
               borderRadius: "5px",
+              overflowY: "hidden",
             }}
           >
             <Typography variant="body1" sx={{ textAlign: "center" }}>

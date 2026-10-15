@@ -3,8 +3,9 @@ import "./gamebox.css";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { spaceCells } from "../data/spaceCells";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import SpaceBoxCell from "./SpaceBoxCell";
+import GamePad from "./GamePad";
 
 const SpaceGameBox = () => {
   const navigate = useNavigate();
@@ -22,18 +23,18 @@ const SpaceGameBox = () => {
     guardianEnigmaSolved,
     setGuardianEnigmaSolved,
   } = useApp();
+
   const {
     buildings: { hatchery, rebirth },
     teleports: { exitCave, enterCave },
   } = spaceCells;
+
   const [alienDialogDisplay, setAlienDialogDisplay] = useState<string>("none");
   const [guardianDialogDisplay, setGuardianDialogDisplay] =
     useState<string>("none");
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
-
+  const moveSpaceUser = useCallback(
+    (key: string) => {
       const currentColumn = userSpacePosition % 20;
       const currentRow = Math.floor(userSpacePosition / 20);
 
@@ -78,12 +79,8 @@ const SpaceGameBox = () => {
         ) {
           setUserSpacePosition(nextPosition);
 
-          if (nextPosition == hatchery) {
-            navigate("/hatchery");
-          }
-          if (nextPosition == rebirth) {
-            navigate("/rebirth");
-          }
+          if (nextPosition == hatchery) navigate("/hatchery");
+          if (nextPosition == rebirth) navigate("/rebirth");
         }
 
         if (isAlienTalkingTrigger && !alienRelicFound) {
@@ -93,6 +90,7 @@ const SpaceGameBox = () => {
             setAlienDialogDisplay("none");
           }, 10000);
         }
+
         if (isGuardianTalkingTrigger && !guardianEnigmaSolved) {
           if (guardianDialogDisplay === "block") return;
           setGuardianDialogDisplay("block");
@@ -121,20 +119,35 @@ const SpaceGameBox = () => {
           }
         }
       }
+    },
+    [
+      userSpacePosition,
+      setUserSpacePosition,
+      alienPosition,
+      alienDialogDisplay,
+      guardianDialogDisplay,
+      alienRelicFound,
+      guardianPosition,
+      guardianEnigmaSolved,
+      navigate,
+      hatchery,
+      rebirth,
+      exitCave,
+      enterCave,
+    ],
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (["w", "a", "s", "d"].includes(key)) {
+        moveSpaceUser(key);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [
-    userSpacePosition,
-    setUserSpacePosition,
-    alienPosition,
-    alienDialogDisplay,
-    guardianDialogDisplay,
-    alienRelicFound,
-    guardianPosition,
-    guardianEnigmaSolved,
-  ]);
+  }, [moveSpaceUser]);
 
   useEffect(() => {
     if (alienRelicFound) {
@@ -166,8 +179,9 @@ const SpaceGameBox = () => {
       sx={{
         backgroundColor: "background.paper",
         width: { xs: "100%", md: "70%" },
-        height: { xs: "50%", md: "80%" },
+        height: { xs: "40%", md: "80%" },
         mt: { xs: "100px", md: 0 },
+        position: "relative",
       }}
     >
       {Array.from({ length: totalCells }).map((_, index) => (
@@ -178,6 +192,8 @@ const SpaceGameBox = () => {
           guardianDialogDisplay={guardianDialogDisplay}
         />
       ))}
+
+      <GamePad onMove={moveSpaceUser} />
     </Box>
   );
 };

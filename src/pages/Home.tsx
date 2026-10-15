@@ -19,10 +19,7 @@ const Home = () => {
         backgroundColor: "background.secondary",
         color: "primary.main",
         flexDirection: { xs: "column", md: "row" },
-        justifyContent: {
-          xs: "center",
-          md: "space-between",
-        },
+        justifyContent: "space-between",
         position: "relative",
       }}
     >
