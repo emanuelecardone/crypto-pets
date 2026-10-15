@@ -29,14 +29,13 @@ const GamePad = ({ onMove }: GamePadProps) => {
         bottom: "-100px",
         left: 0,
         width: "100%",
-        height: "80px",
+        height: { xs: "60px", md: "80px" },
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         gap: { xs: "35px", md: "50px" },
       }}
     >
-      {/* ◀ FRECCIA SINISTRA */}
       <Box
         onClick={() => onMove("a")}
         sx={{
@@ -58,7 +57,6 @@ const GamePad = ({ onMove }: GamePadProps) => {
         </Typography>
       </Box>
 
-      {/* ▲ ▼ BLOCCO CENTRALE VERTICALE */}
       <Box
         sx={{
           display: "flex",
@@ -69,7 +67,6 @@ const GamePad = ({ onMove }: GamePadProps) => {
           width: { xs: "15vw", md: "60px" },
         }}
       >
-        {/* SU */}
         <Typography
           onClick={() => onMove("w")}
           sx={{
@@ -81,7 +78,6 @@ const GamePad = ({ onMove }: GamePadProps) => {
         >
           {"\u25B2"}
         </Typography>
-        {/* GIÙ */}
         <Typography
           onClick={() => onMove("s")}
           sx={{
@@ -95,7 +91,6 @@ const GamePad = ({ onMove }: GamePadProps) => {
         </Typography>
       </Box>
 
-      {/* ▶ FRECCIA DESTRA */}
       <Box
         onClick={() => onMove("d")}
         sx={{

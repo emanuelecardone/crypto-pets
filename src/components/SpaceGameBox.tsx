@@ -179,7 +179,7 @@ const SpaceGameBox = () => {
       sx={{
         backgroundColor: "background.paper",
         width: { xs: "100%", md: "70%" },
-        height: { xs: "40%", md: "80%" },
+        height: { xs: "30%", md: "80%" },
         mt: { xs: "100px", md: 0 },
         position: "relative",
       }}
