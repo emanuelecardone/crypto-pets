@@ -19,7 +19,7 @@ code {
 
 @media (max-width: 900px) and (orientation: landscape) {
   body::before {
-    content: "Ruota il dispositivo in verticale per giocare! 📱";
+    content: "Rotate your device to portrait mode to play.";
     position: fixed;
     top: 0;
     left: 0;
