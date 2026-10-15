@@ -62,7 +62,6 @@ const Album = () => {
           border: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
-        {/* TESTO SINISTRO: EARTH */}
         <Typography
           variant="body1"
           sx={{
@@ -74,7 +73,6 @@ const Album = () => {
           Earth 🌍
         </Typography>
 
-        {/* LO SWITCH CENTRALE */}
         <Switch
           checked={isAlien}
           onChange={(e) => setIsAlien(e.target.checked)}

@@ -32,7 +32,6 @@ const Zoo = () => {
           border: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
-        {/* TESTO SINISTRO: EARTH */}
         <Typography
           variant="body1"
           sx={{
@@ -44,7 +43,6 @@ const Zoo = () => {
           Earth 🌍
         </Typography>
 
-        {/* LO SWITCH CENTRALE */}
         <Switch
           checked={isAlien}
           onChange={(e) => setIsAlien(e.target.checked)}
@@ -56,7 +54,6 @@ const Zoo = () => {
           }}
         />
 
-        {/* TESTO DESTRO: ALIEN */}
         <Typography
           variant="body1"
           sx={{

@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
 import "./home.css";
 import GameBox from "../components/GameBox";
 import UserInfo from "../components/UserInfo";
@@ -9,17 +9,28 @@ import { useApp } from "../context/AppContext";
 import ThemeToggle from "../components/ThemeToggle";
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const { setTutorialWatched } = useApp();
   return (
     <Box
       className={"home"}
-      sx={{ backgroundColor: "background.secondary", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.secondary",
+        color: "primary.main",
+        flexDirection: { xs: "column", md: "row" },
+        justifyContent: {
+          xs: "center",
+          md: "space-between",
+        },
+        position: "relative",
+      }}
     >
       <GameBox />
       <Box
         sx={{
-          width: "20%",
-          height: "80%",
+          width: { xs: "100%", md: "20%" },
+          height: { xs: "40%", md: "80%" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -31,36 +42,36 @@ const Home = () => {
         <UserCharacters />
       </Box>
 
-      <Button
-        variant="contained"
-        sx={{ position: "absolute", top: "40px", left: "40px" }}
-        onClick={() => {
-          setTutorialWatched(false);
-        }}
-      >
-        Tutorial
-      </Button>
       <Box
         sx={{
+          width: "100%",
+          height: "100px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           position: "absolute",
-          top: "40px",
-          left: "50%",
-          transform: "translateX(-50%)",
+          top: 0,
+          left: 0,
+          px: "40px",
         }}
       >
-        <ThemeToggle />
+        <Button
+          variant="contained"
+          onClick={() => {
+            setTutorialWatched(false);
+          }}
+        >
+          Tutorial
+        </Button>
+        <Box sx={{}}>
+          <ThemeToggle />
+        </Box>
+        <Link to={"/trivia"}>
+          <Button variant="contained">
+            {isMobile ? "Trivia" : "Trivia (earn gems!)"}
+          </Button>
+        </Link>
       </Box>
-      <Link
-        to={"/trivia"}
-        style={{
-          position: "absolute",
-          top: "40px",
-          right: "40px",
-          textDecoration: "none",
-        }}
-      >
-        <Button variant="contained">Trivia (earn gems!)</Button>
-      </Link>
     </Box>
   );
 };

@@ -20,7 +20,6 @@ const UserCharacters = () => {
         backgroundColor: "background.paper",
         border: "2px solid blue",
         borderRadius: "10px",
-        p: 4,
       }}
     >
       <Typography variant="h3" sx={{ color: "secondary.main" }}>

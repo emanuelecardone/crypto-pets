@@ -205,9 +205,20 @@ const SpaceBoxCell = ({
         💰
       </Typography>
       <Typography
+        variant="body2"
         sx={{
-          display: legendContent != "" ? "block" : "none",
-          textAlign: "center",
+          display: legendContent !== "" ? "block" : "none",
+          textAlign: "left",
+          fontWeight: "bold",
+
+          position: "absolute",
+          left: "22px",
+          top: "50%",
+          transform: "translateY(-50%)",
+
+          whiteSpace: "nowrap",
+          zIndex: 2500,
+          width: "max-content",
         }}
       >
         {legendContent}

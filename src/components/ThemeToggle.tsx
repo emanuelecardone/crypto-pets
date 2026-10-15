@@ -12,7 +12,6 @@ const ThemeToggle = () => {
         justifyContent: "center",
         gap: "12px",
         p: "8px 16px",
-        backgroundColor: "background.secondary",
         borderRadius: "20px",
         width: "100%",
         boxSizing: "border-box",
@@ -32,7 +31,6 @@ const ThemeToggle = () => {
         color="primary"
       />
 
-      {/* POLO DESTRO: DARK MODE */}
       <Typography
         variant="body1"
         color={darkMode ? "text.primary" : "text.secondary"}

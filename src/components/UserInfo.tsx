@@ -18,7 +18,7 @@ const UserInfo = () => {
   return (
     <Box
       className="userinfo"
-      sx={{ backgroundColor: "background.paper", p: 1, overflowY: "auto" }}
+      sx={{ backgroundColor: "background.paper", p: 0, overflowY: "auto" }}
     >
       <Typography variant="h3" sx={{ color: "secondary.main" }}>
         User Info

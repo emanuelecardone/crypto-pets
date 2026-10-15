@@ -74,7 +74,6 @@ const SpaceCenter = () => {
 
       <Typography variant="h2">Space Center</Typography>
 
-      {/* Box del contenuto modificato per ospitare la meccanica del pulsante attivo */}
       <Box className="space-center-container">
         <Box
           sx={{
@@ -143,7 +142,6 @@ const SpaceCenter = () => {
               Activation price: <strong>{ACTIVATION_COST} Cash</strong>
             </Typography>
 
-            {/* Il pulsante di Material UI per riscattare attivamente il bonus */}
             <Button
               variant="contained"
               color={

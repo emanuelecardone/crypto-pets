@@ -70,6 +70,60 @@ export default function App() {
     },
     typography: {
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+
+      h1: {
+        fontSize: "3rem",
+        "@media (max-width:1200px)": { fontSize: "2rem" },
+        "@media (max-width:600px)": { fontSize: "1.5rem" },
+      },
+      h2: {
+        fontSize: "2.5rem",
+        "@media (max-width:1200px)": { fontSize: "1.75rem" },
+        "@media (max-width:600px)": { fontSize: "1.3rem" },
+      },
+      h3: {
+        fontSize: "2rem",
+        "@media (max-width:1200px)": { fontSize: "1.5rem" },
+        "@media (max-width:600px)": { fontSize: "1.1rem" },
+      },
+
+      h4: {
+        fontWeight: "bold",
+        fontSize: "1.75rem",
+        "@media (max-width:1200px)": { fontSize: "1.2rem" },
+        "@media (max-width:600px)": { fontSize: "1rem" },
+      },
+      h5: {
+        fontWeight: "bold",
+        fontSize: "1.4rem",
+        "@media (max-width:1200px)": { fontSize: "1rem" },
+        "@media (max-width:600px)": { fontSize: "0.85rem" },
+      },
+      h6: {
+        fontWeight: "bold",
+        fontSize: "1.2rem",
+        "@media (max-width:1200px)": { fontSize: "0.9rem" },
+        "@media (max-width:600px)": { fontSize: "0.75rem" },
+      },
+
+      body1: {
+        fontWeight: "bold",
+        fontSize: "1.15rem",
+        "@media (max-width:1200px)": { fontSize: "0.85rem" },
+        "@media (max-width:600px)": { fontSize: "0.7rem" },
+      },
+
+      body2: {
+        fontSize: "1rem",
+        "@media (max-width:1200px)": { fontSize: "0.75rem" },
+        "@media (max-width:600px)": { fontSize: "0.6rem" },
+      },
+
+      caption: {
+        fontSize: "0.8rem",
+        "@media (max-width:1200px)": { fontSize: "0.65rem" },
+        "@media (max-width:600px)": { fontSize: "0.55rem" },
+      },
     },
   });
 

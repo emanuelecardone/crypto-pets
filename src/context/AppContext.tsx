@@ -99,10 +99,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     "/track-4.mp3",
   ];
 
-  const [tutorialWatched, setTutorialWatched] = useState<boolean>(false);
+  const [tutorialWatched, setTutorialWatched] = useState<boolean>(true);
   const [userCharacter, setUserCharacter] = useState<string>(userCharacters[0]);
   const [tutorial, setTutorial] = useState<string[]>(tutorialTexts);
-  const [isSpace, setIsSpace] = useState<boolean>(false);
+  const [isSpace, setIsSpace] = useState<boolean>(true);
   const [alienRelicFound, setAlienRelicFound] = useState<boolean>(false);
   const [guardianEnigmaSolved, setGuardianEnigmaSolved] =
     useState<boolean>(false);

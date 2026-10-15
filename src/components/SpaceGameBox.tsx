@@ -161,7 +161,15 @@ const SpaceGameBox = () => {
   }, [userCharacter, userSpacePosition, setGuardianEnigmaSolved]);
 
   return (
-    <Box className="gamebox" sx={{ backgroundColor: "background.paper" }}>
+    <Box
+      className="gamebox"
+      sx={{
+        backgroundColor: "background.paper",
+        width: { xs: "100%", md: "70%" },
+        height: { xs: "50%", md: "80%" },
+        mt: { xs: "100px", md: 0 },
+      }}
+    >
       {Array.from({ length: totalCells }).map((_, index) => (
         <SpaceBoxCell
           key={"cell-" + index}

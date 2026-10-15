@@ -84,7 +84,6 @@ const Shop = () => {
                       sx={{ textTransform: "capitalize", mb: 4 }}
                     >
                       {upgradeKey.replace(/([A-Z])/g, " $1")}{" "}
-                      {/* Trasforma extraGold in Extra Gold */}
                     </Typography>
                   }
                 />
