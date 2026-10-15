@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  FormControl,
-  FormControlLabel,
-  List,
-  ListItem,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, Switch, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./album.css";
 import { petSpecies } from "../data/pets";
@@ -23,13 +11,17 @@ import { alienPetSpecies } from "../data/alienPets";
 const Album = () => {
   const { userPets, userAlienPets, isSpace } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
+  const [currentPetsNames, setCurrentPetsNames] = useState<string[]>([]);
 
-  let currentPetsNames: string[] = [];
+  useEffect(() => {
+    const currentPetsObj = isAlien ? userAlienPets : userPets;
 
-  Object.values(isSpace ? userAlienPets : userPets).forEach((rarityGroup) => {
-    const thisRarityNames = rarityGroup.map((pet) => pet.name);
-    currentPetsNames = [...currentPetsNames, ...thisRarityNames];
-  });
+    const allNames = Object.values(currentPetsObj).flatMap((rarityGroup) =>
+      rarityGroup.map((pet) => pet.name),
+    );
+
+    setCurrentPetsNames(allNames);
+  }, [isAlien, userPets, userAlienPets]);
 
   return (
     <Box
