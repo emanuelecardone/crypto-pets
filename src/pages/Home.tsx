@@ -55,7 +55,7 @@ const Home = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          px: { xs: "15px", md: "40px" },
+          px: { xs: "5px", md: "40px" },
           boxSizing: "border-box",
         }}
       >
@@ -72,7 +72,7 @@ const Home = () => {
           Tutorial
         </Button>
 
-        <Box sx={{ width: { xs: "130px", md: "auto" } }}>
+        <Box sx={{ width: { xs: "40%", md: "auto" } }}>
           <ThemeToggle />
         </Box>
 

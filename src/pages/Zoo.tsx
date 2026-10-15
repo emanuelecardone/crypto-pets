@@ -73,7 +73,15 @@ const Zoo = () => {
         {Object.values(isAlien ? userAlienPets : userPets).map(
           (rarityGroups, index) =>
             rarityGroups.map((pet, petIndex) => (
-              <NewPet pet={pet} sx={{ height: "50%" }} isZoo />
+              <NewPet
+                pet={pet}
+                sx={{
+                  width: { xs: "calc(50% - 10px)", md: "calc(20% - 10px)" },
+                  height: "calc(50% - 10px)",
+                }}
+                isZoo
+                listItemsSx={{ p: { xs: 0, md: 1 }, textAlign: "center" }}
+              />
             )),
         )}
       </Box>

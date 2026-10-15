@@ -11,7 +11,7 @@ const ThemeToggle = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: "12px",
-        p: "8px 16px",
+        p: { xs: 0, md: "8px 16px" },
         borderRadius: "20px",
         width: "100%",
         boxSizing: "border-box",

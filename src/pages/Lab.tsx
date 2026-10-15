@@ -166,12 +166,13 @@ const Lab = () => {
         <Box
           sx={{
             width: "100%",
+            height: "45%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             gap: "20px",
-            p: 4,
+            p: { xs: 1, md: 4 },
             borderRadius: "5px",
             backgroundColor: "background.secondary",
           }}
@@ -179,7 +180,11 @@ const Lab = () => {
           <Grow in={animateText} timeout={500}>
             <Typography
               variant="h3"
-              sx={{ mb: 3, fontWeight: "bold", color: "secondary.main" }}
+              sx={{
+                mb: { xs: 0.5, md: 3 },
+                fontWeight: "bold",
+                color: "secondary.main",
+              }}
             >
               {resultText}
             </Typography>
@@ -219,6 +224,7 @@ const Lab = () => {
                 .length == 0
             }
             onClick={handleRollMutation}
+            sx={{ textWrap: "nowrap" }}
           >
             Try Mutation (💰 {MUTATION_PRICE})
           </Button>
@@ -226,27 +232,33 @@ const Lab = () => {
         <Box
           sx={{
             width: "100%",
+            height: "55%",
             textTransform: "capitalize",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             gap: "20px",
-            mt: 6,
-            p: 4,
+            mt: { xs: 0, md: 6 },
+            p: { xs: 1, md: 4 },
             borderRadius: "5px",
             backgroundColor: "background.secondary",
           }}
         >
           <Typography
             variant="h3"
-            sx={{ fontWeight: "bold", mb: 3, color: "secondary.main" }}
+            sx={{
+              fontWeight: "bold",
+              mb: 3,
+              color: "secondary.main",
+              display: { xs: "none", md: "block" },
+            }}
           >
             Odds
           </Typography>
           <List>
             {Object.entries(mutationOdds).map((values, index) => (
-              <ListItem key={"odd-" + index}>
+              <ListItem key={"odd-" + index} sx={{ p: 0.5 }}>
                 <Typography variant="h4">
                   {values[0]}: {values[1]}%
                 </Typography>

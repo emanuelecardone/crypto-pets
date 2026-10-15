@@ -8,6 +8,8 @@ import {
   SxProps,
   Theme,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Pet } from "../types/pets";
 import { relative } from "path";
@@ -28,6 +30,8 @@ const NewPet = ({
   listItemsSx = { textTransform: "capitalize" },
   isUnlocked = true,
 }: Props) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   return pet ? (
     <Card
       className="album-card"
@@ -68,27 +72,40 @@ const NewPet = ({
           justifyContent: "space-between",
           flexDirection: "column",
           height: "80%",
+          p: { xs: 1, md: 2 },
         }}
       >
-        <List>
-          <ListItem sx={{ justifyContent: "center", mb: 2, ...listItemsSx }}>
+        <List sx={{ padding: { xs: 0, md: 1 } }}>
+          <ListItem
+            sx={{
+              justifyContent: "center",
+              mb: 2,
+              ...listItemsSx,
+            }}
+          >
             <Typography variant="h3">{pet.emoji}</Typography>
           </ListItem>
           <ListItem sx={{ ...listItemsSx }}>
-            <Typography variant="h5">Rarity: {pet.rarity}</Typography>
+            <Typography variant="h5">
+              {isMobile ? "" : "Rarity:"} {pet.rarity}
+            </Typography>
           </ListItem>
-          <ListItem sx={{ ...listItemsSx }}>
-            <Typography variant="h5">Value: {pet.baseValue}</Typography>
-          </ListItem>
+          {isMobile ? null : (
+            <ListItem sx={{ ...listItemsSx }}>
+              <Typography variant="h5">Value: {pet.baseValue}</Typography>
+            </ListItem>
+          )}
           <ListItem sx={{ ...listItemsSx }}>
             <Typography variant="h5">
               {isZoo
-                ? "Current earnings: " +
+                ? (isMobile ? "" : "Current earnings: ") +
                   (pet.mutation
                     ? pet.earnings + pet.earnings * pet.mutation.bonusMultiplier
                     : pet.earnings) +
                   "/s"
-                : "Base earnings: " + pet.earnings + "/s"}
+                : (isMobile ? "" : "Base earnings: ") +
+                  pet.earnings +
+                  "/s"}
             </Typography>
           </ListItem>
         </List>
@@ -147,6 +164,7 @@ const NewPet = ({
           opacity: "0.85",
           zIndex: 20000,
           color: "white",
+          textAlign: "center",
         }}
       >
         <Typography variant="h4">Not obtained</Typography>

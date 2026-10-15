@@ -214,7 +214,7 @@ const SpaceBoxCell = ({
           fontWeight: "bold",
 
           position: "absolute",
-          left: "22px",
+          left: { xs: "1px", md: "22px" },
           top: "50%",
           transform: "translateY(-50%)",
 

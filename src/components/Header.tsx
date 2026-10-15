@@ -1,9 +1,17 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const { userWallet, userGems, isSpace, setIsSpace } = useApp();
   return (
     <Box
@@ -16,7 +24,7 @@ const Header = () => {
         position: "fixed",
         top: 0,
         left: 0,
-        px: "40px",
+        px: { xs: "5px", md: "40px" },
         backgroundColor: "background.secondary",
       }}
     >
@@ -30,12 +38,17 @@ const Header = () => {
           alignItems: "flex-start",
         }}
       >
-        <Typography variant="h5">Cash: {userWallet.toFixed(2)} $</Typography>
-        <Typography variant="h5">Gems: {userGems.toFixed(2)}</Typography>
+        <Typography variant="h5">
+          {isMobile ? "" : "Cash: "} {userWallet.toFixed(2)}$
+        </Typography>
+        <Typography variant="h5">
+          {isMobile ? "" : "Gems: "} {userGems.toFixed(2)}
+          {isMobile ? "Gems" : ""}
+        </Typography>
       </Box>
       <Box
         sx={{
-          width: "60%",
+          width: "40%",
           height: "100%",
           display: "flex",
           justifyContent: "center",

@@ -55,7 +55,7 @@ const Space = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          px: { xs: "15px", md: "40px" },
+          px: { xs: "5px", md: "40px" },
           boxSizing: "border-box",
         }}
       >
@@ -74,7 +74,7 @@ const Space = () => {
           </Button>
         </Link>
 
-        <Box sx={{ width: { xs: "130px", md: "auto" } }}>
+        <Box sx={{ width: { xs: "40%", md: "auto" } }}>
           <ThemeToggle />
         </Box>
 

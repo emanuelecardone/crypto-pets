@@ -140,14 +140,14 @@ const Hatchery = () => {
       </Typography>
       <Box
         className="hatchery-container"
-        sx={{ backgroundColor: "background.secondary" }}
+        sx={{ backgroundColor: "background.secondary", overflowY: "auto" }}
       >
         {Object.entries(isSpace ? alienEggs : eggs).map((eggInfo) => {
           return (
             <Card
               key={eggInfo[0]}
               sx={{
-                width: "calc(100% / 4 - 20px)",
+                width: { xs: "calc(100% - 20px)", md: "calc(25% - 20px)" },
                 height: "45%",
                 textTransform: "capitalize",
                 border: "2px solid cyan",
@@ -182,7 +182,14 @@ const Hatchery = () => {
                   alignItems: "center",
                 }}
               >
-                <Box sx={{ width: "100%", height: "60%", overflowY: "auto" }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "60%",
+                    overflowY: "auto",
+                    display: { xs: "none", md: "block" },
+                  }}
+                >
                   <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
                     Best pets
                   </Typography>
@@ -216,7 +223,7 @@ const Hatchery = () => {
                 <Box
                   sx={{
                     width: "100%",
-                    height: "30%",
+                    height: { xs: "100%", md: "30%" },
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",

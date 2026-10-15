@@ -1,4 +1,11 @@
-import { Box, Button, Grow, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grow,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Pet } from "../types/pets";
 import NewPet from "./NewPet";
 import { useApp } from "../context/AppContext";
@@ -12,6 +19,8 @@ type Props = {
 };
 
 const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const {
     userWallet,
     setUserWallet,
@@ -64,7 +73,7 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
         height: "100%",
         display: display,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         position: "fixed",
         zIndex: 5000,
         backgroundColor: "background.paper",
@@ -74,7 +83,7 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
         <Box
           sx={{
             width: "50%",
-            height: "50%",
+            height: "55%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -124,10 +133,13 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
                 sx={{ backgroundColor: "red", p: 2 }}
                 onClick={handleSellPet}
               >
-                Sell for {pet.baseValue} {isSpace ? "gems" : "$"}
+                Sell{" "}
+                {isMobile
+                  ? ""
+                  : "for " + pet.baseValue + (isSpace ? " gems" : " $")}
               </Button>
               <Button variant="contained" sx={{ p: 2 }} onClick={handleKeepPet}>
-                Place in zoo
+                {isMobile ? "" : "Place in "}Zoo
               </Button>
             </Box>
           )}

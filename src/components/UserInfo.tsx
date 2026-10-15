@@ -20,7 +20,10 @@ const UserInfo = () => {
       className="userinfo"
       sx={{ backgroundColor: "background.paper", p: 0, overflowY: "auto" }}
     >
-      <Typography variant="h3" sx={{ color: "secondary.main" }}>
+      <Typography
+        variant="h3"
+        sx={{ color: "secondary.main", display: { xs: "none", md: "block" } }}
+      >
         User Info
       </Typography>
       <Box

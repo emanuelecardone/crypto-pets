@@ -22,7 +22,10 @@ const UserCharacters = () => {
         borderRadius: "10px",
       }}
     >
-      <Typography variant="h3" sx={{ color: "secondary.main" }}>
+      <Typography
+        variant="h3"
+        sx={{ color: "secondary.main", display: { xs: "none", md: "block" } }}
+      >
         Characters
       </Typography>
       <Box

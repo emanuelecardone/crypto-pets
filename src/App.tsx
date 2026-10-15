@@ -124,6 +124,15 @@ export default function App() {
         "@media (max-width:1200px)": { fontSize: "0.65rem" },
         "@media (max-width:600px)": { fontSize: "0.55rem" },
       },
+
+      button: {
+        fontWeight: "bold",
+        fontSize: "0.875rem",
+        "@media (max-width:1200px)": { fontSize: "0.75rem" },
+        "@media (max-width:600px)": {
+          fontSize: "0.6rem",
+        },
+      },
     },
   });
 

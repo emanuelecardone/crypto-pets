@@ -108,6 +108,11 @@ const Album = () => {
                 pet={pet}
                 isZoo={false}
                 isUnlocked={currentPetsNames.includes(pet.name)}
+                sx={{
+                  width: { xs: "calc(50% - 10px)", md: "calc(20% - 10px)" },
+                  height: "calc(50% - 10px)",
+                }}
+                listItemsSx={{ textAlign: "center", p: { xs: 0, md: 1 } }}
               />
             )),
         )}

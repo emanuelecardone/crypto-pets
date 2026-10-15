@@ -15,7 +15,6 @@
   max-height: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: flex-start;
   gap: 10px;
   overflow-y: auto;
