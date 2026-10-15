@@ -12,6 +12,7 @@ const Space = () => {
   const { setIsSpace } = useApp();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
+
   return (
     <Box
       className="space"
@@ -21,9 +22,14 @@ const Space = () => {
         flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
         position: "relative",
+        height: { xs: "100dvh", md: "100vh" },
+        overflow: "hidden",
+        padding: { xs: "90px 15px 15px 15px", md: "40px" },
+        boxSizing: "border-box",
       }}
     >
       <SpaceGameBox />
+
       <Box
         sx={{
           display: "flex",
@@ -31,7 +37,7 @@ const Space = () => {
           justifyContent: "space-between",
           alignItems: "center",
           width: { xs: "100%", md: "20%" },
-          height: { xs: "40%", md: "80%" },
+          height: { xs: "35%", md: "80%" },
         }}
       >
         <AudioBox />
@@ -49,29 +55,37 @@ const Space = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          px: "40px",
+          px: { xs: "15px", md: "40px" },
+          boxSizing: "border-box",
         }}
       >
-        <Link
-          to={"/"}
-          style={{
-            textDecoration: "none",
-          }}
-        >
+        <Link to={"/"} style={{ textDecoration: "none" }}>
           <Button
             variant="contained"
             onClick={() => {
               setIsSpace(false);
             }}
+            sx={{
+              fontSize: { xs: "11px", md: "14px" },
+              padding: { xs: "6px 10px", md: "6px 16px" },
+            }}
           >
             {isMobile ? "Earth" : "Back to Earth"}
           </Button>
         </Link>
-        <Box sx={{}}>
+
+        <Box sx={{ width: { xs: "130px", md: "auto" } }}>
           <ThemeToggle />
         </Box>
-        <Link to={"/trivia"}>
-          <Button variant="contained">
+
+        <Link to={"/trivia"} style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            sx={{
+              fontSize: { xs: "11px", md: "14px" },
+              padding: { xs: "6px 10px", md: "6px 16px" },
+            }}
+          >
             {isMobile ? "Trivia" : "Trivia (earn gems!)"}
           </Button>
         </Link>

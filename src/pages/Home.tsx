@@ -12,6 +12,7 @@ const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const { setTutorialWatched } = useApp();
+
   return (
     <Box
       className={"home"}
@@ -21,13 +22,18 @@ const Home = () => {
         flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
         position: "relative",
+        height: { xs: "100dvh", md: "100vh" },
+        overflow: "hidden",
+        padding: "40px",
+        boxSizing: "border-box",
       }}
     >
       <GameBox />
+
       <Box
         sx={{
           width: { xs: "100%", md: "20%" },
-          height: { xs: "40%", md: "80%" },
+          height: { xs: "35%", md: "80%" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -49,7 +55,8 @@ const Home = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          px: "40px",
+          px: { xs: "15px", md: "40px" },
+          boxSizing: "border-box",
         }}
       >
         <Button
@@ -57,14 +64,26 @@ const Home = () => {
           onClick={() => {
             setTutorialWatched(false);
           }}
+          sx={{
+            fontSize: { xs: "11px", md: "14px" },
+            padding: { xs: "6px 10px", md: "6px 16px" },
+          }}
         >
           Tutorial
         </Button>
-        <Box sx={{}}>
+
+        <Box sx={{ width: { xs: "130px", md: "auto" } }}>
           <ThemeToggle />
         </Box>
-        <Link to={"/trivia"}>
-          <Button variant="contained">
+
+        <Link to={"/trivia"} style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            sx={{
+              fontSize: { xs: "11px", md: "14px" },
+              padding: { xs: "6px 10px", md: "6px 16px" },
+            }}
+          >
             {isMobile ? "Trivia" : "Trivia (earn gems!)"}
           </Button>
         </Link>
