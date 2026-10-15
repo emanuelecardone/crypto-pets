@@ -21,12 +21,12 @@ import Header from "../components/Header";
 import { alienPetSpecies } from "../data/alienPets";
 
 const Album = () => {
-  const { userPets, userAlienPets } = useApp();
+  const { userPets, userAlienPets, isSpace } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
 
   let currentPetsNames: string[] = [];
 
-  Object.values(userPets).forEach((rarityGroup) => {
+  Object.values(isSpace ? userAlienPets : userPets).forEach((rarityGroup) => {
     const thisRarityNames = rarityGroup.map((pet) => pet.name);
     currentPetsNames = [...currentPetsNames, ...thisRarityNames];
   });
