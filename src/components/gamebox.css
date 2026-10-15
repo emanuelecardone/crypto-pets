@@ -1,0 +1,8 @@
+.gamebox {
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid blue;
+  padding: 5px;
+}
