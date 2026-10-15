@@ -1,0 +1,8 @@
+Copyright (c) 2026 Emanuele Cardone. All rights reserved.
+
+The academic/portfolio project "Crypto Pets" and all its associated source code, 
+assets, and documentation are the exclusive intellectual property of Emanuele Cardone.
+
+No part of this repository may be copied, reproduced, redistributed, 
+or used to create derivative works without the express written permission 
+of the copyright owner.
