@@ -16,3 +16,26 @@ code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+@media (max-width: 900px) and (orientation: landscape) {
+  body::before {
+    content: "Ruota il dispositivo in verticale per giocare! 📱";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #121212;
+    color: #00e5ff;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 99999;
+  }
+}
