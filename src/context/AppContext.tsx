@@ -171,62 +171,44 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let total = 0;
-
+      let totalGold = 0;
       Object.values(userPets).forEach((petArray) => {
         petArray.forEach((pet: any) => {
           let petEarnings = pet.earnings || 0;
-
           if (pet.mutation) {
             petEarnings += pet.earnings * pet.mutation.bonusMultiplier;
           }
-
-          total += petEarnings;
+          totalGold += petEarnings;
         });
       });
+      const finalGoldEarnings =
+        totalGold + (totalGold / 100) * userUpgrades.extraGold.currentBonus;
 
-      const finalEarnings =
-        total + (total / 100) * userUpgrades.extraGold.currentBonus;
-
-      setUserEarnings(finalEarnings);
-
-      if (finalEarnings > 0) {
-        setUserWallet((prevWallet) => prevWallet + finalEarnings);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [userPets, userUpgrades]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       let totalGems = 0;
-
       Object.values(userAlienPets).forEach((petArray) => {
         petArray.forEach((pet: any) => {
           let petEarnings = pet.earnings || 0;
-
           if (pet.mutation) {
             petEarnings += pet.earnings * pet.mutation.bonusMultiplier;
-            console.log("1", pet.mutation.bonusMultiplier);
           }
-
           totalGems += petEarnings;
         });
       });
-
       const finalGemsEarnings =
         totalGems + (totalGems / 100) * userUpgrades.extraGems.currentBonus;
-
+      setUserEarnings(finalGoldEarnings);
       setUserGemsEarnings(finalGemsEarnings);
 
+      if (finalGoldEarnings > 0) {
+        setUserWallet((prevWallet) => prevWallet + finalGoldEarnings);
+      }
       if (finalGemsEarnings > 0) {
         setUserGems((prevGems) => prevGems + finalGemsEarnings);
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [userAlienPets, userUpgrades]);
+  }, [userPets, userAlienPets, userUpgrades]);
 
   useEffect(() => {
     const interval = setInterval(() => {
