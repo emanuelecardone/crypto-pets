@@ -30,6 +30,7 @@ const SpaceCenter = () => {
     queryKey: ["nasaAsteroids"],
     queryFn: fetchTodayAsteroidsCount,
     staleTime: 1000 * 60 * 60,
+    enabled: !asteroidsBonus,
   });
 
   const potentialBonus = asteroidCount ? asteroidCount * 2 : 0;
