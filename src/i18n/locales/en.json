@@ -168,5 +168,13 @@
     "loadingQuestions": "Loading questions...",
     "loadingCategories": "Loading categories...",
     "question": "Question"
+  },
+  "settings": {
+    "settings": "Settings",
+    "selectLanguage": "Select language",
+    "language": {
+      "italian": "Italian",
+      "english": "English"
+    }
   }
 }

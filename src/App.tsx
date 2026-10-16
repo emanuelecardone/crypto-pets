@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Tutorial from "./pages/Tutorial";
 import Shop from "./pages/Shop";
@@ -11,7 +11,16 @@ import { useApp } from "./context/AppContext";
 import Trivia from "./pages/Trivia";
 import Space from "./pages/Space";
 import Rebirth from "./pages/Rebirth";
-import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import {
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+  Box,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
+import Settings from "./pages/Settings";
+import SettingsIcon from "@mui/icons-material/Settings";
 declare module "@mui/material/styles" {
   interface Palette {
     tertiary: Palette["primary"];
@@ -26,6 +35,8 @@ declare module "@mui/material/styles" {
 
 export default function App() {
   const { tutorialWatched, isSpace, darkMode } = useApp();
+  const themeMUI = useTheme();
+  const isMobile = useMediaQuery(themeMUI.breakpoints.only("xs"));
 
   const theme = createTheme({
     palette: {
@@ -160,8 +171,24 @@ export default function App() {
 
         <Route path="/rebirth" element={<Rebirth />} />
 
+        <Route path="/settings" element={<Settings />} />
+
         <Route path="*" element={<div>Pagina non trovata!</div>} />
       </Routes>
+      <Link
+        className="settings-button"
+        to={"/settings"}
+        style={{
+          position: "fixed",
+          right: !isMobile ? "40px" : "5px",
+          bottom: !isMobile ? "40px" : "5px",
+          textDecoration: "none",
+        }}
+      >
+        <SettingsIcon
+          sx={{ fontSize: { xs: "25px", md: "40px" }, color: "secondary.main" }}
+        />
+      </Link>
     </ThemeProvider>
   );
 }

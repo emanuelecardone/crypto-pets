@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5;
+  gap: 5px;
 }
 
 .shop-btn-container {
@@ -26,5 +26,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1;
+  gap: 1px;
 }

@@ -162,5 +162,13 @@
     "loadingQuestions": "Caricando domande...",
     "loadingCategories": "Caricando categorie...",
     "question": "Domanda"
+  },
+  "settings": {
+    "settings": "Impostazioni",
+    "selectLanguage": "Seleziona lingua",
+    "language": {
+      "italian": "Italiano",
+      "english": "Inglese"
+    }
   }
 }
