@@ -20,14 +20,20 @@ const Lab = () => {
     setUserWallet,
     userPets,
     setUserPets,
+    userAlienPets,
+    setUserAlienPets,
     mutations,
     mutationOdds,
   } = useApp();
 
   const [selectedPetName, setSelectedPetName] = useState<string>(
-    Object.values(userPets).flatMap((rarityGroup) => rarityGroup)[0]
+    Object.values(userPets).flatMap((rarityGroup) => rarityGroup).length > 0
       ? Object.values(userPets).flatMap((rarityGroup) => rarityGroup)[0].name
-      : "",
+      : Object.values(userAlienPets).flatMap((rarityGroup) => rarityGroup)
+            .length > 0
+        ? Object.values(userAlienPets).flatMap((rarityGroup) => rarityGroup)[0]
+            .name
+        : "",
   );
 
   const [resultText, setResultText] = useState<string>("Try to mutate a pet!");
@@ -115,15 +121,20 @@ const Lab = () => {
       }, 300);
     }, 5000);
 
-    const targetPet = Object.values(userPets)
+    const targetPet = [
+      ...Object.values(userPets),
+      ...Object.values(userAlienPets),
+    ]
       .flatMap((rarityGroup) => rarityGroup)
       .find((pet: any) => pet.name === selectedPetName);
 
     if (targetPet) {
+      console.log(targetPet);
       const currentSelectedPetRarity =
         targetPet.rarity as keyof typeof userPets;
 
       const currentUserPets = { ...userPets };
+      const currentUserAlienPets = { ...userAlienPets };
 
       if (currentUserPets[currentSelectedPetRarity]) {
         currentUserPets[currentSelectedPetRarity] = currentUserPets[
@@ -143,6 +154,29 @@ const Lab = () => {
         });
 
         setUserPets(currentUserPets);
+
+        console.log(
+          `Pet ${selectedPetName} potenziato con successo con il tratto ${selectedMutation.name}!`,
+        );
+      }
+      if (currentUserAlienPets[currentSelectedPetRarity]) {
+        currentUserAlienPets[currentSelectedPetRarity] = currentUserAlienPets[
+          currentSelectedPetRarity
+        ].map((pet: any) => {
+          if (pet.name === selectedPetName) {
+            return {
+              ...pet,
+              mutation: {
+                type: selectedMutation.type,
+                name: selectedMutation.name,
+                bonusMultiplier: selectedMutation.bonusMultiplier,
+              },
+            };
+          }
+          return pet;
+        });
+
+        setUserAlienPets(currentUserAlienPets);
 
         console.log(
           `Pet ${selectedPetName} potenziato con successo con il tratto ${selectedMutation.name}!`,
@@ -190,6 +224,8 @@ const Lab = () => {
             </Typography>
           </Grow>
           {Object.values(userPets).flatMap((rarityGroup) => rarityGroup)
+            .length > 0 ||
+          Object.values(userAlienPets).flatMap((rarityGroup) => rarityGroup)
             .length > 0 ? (
             <Select
               value={selectedPetName}
@@ -200,7 +236,7 @@ const Lab = () => {
                 },
               }}
             >
-              {Object.values(userPets)
+              {[...Object.values(userPets), ...Object.values(userAlienPets)]
                 .flatMap((rarityGroup) => rarityGroup)
                 .map((pet: any, index: number) => (
                   <MenuItem key={"select-pet-" + index} value={pet.name}>
@@ -220,8 +256,11 @@ const Lab = () => {
             disabled={
               userWallet < MUTATION_PRICE ||
               disabled ||
-              Object.values(userPets).flatMap((petCategory) => petCategory)
-                .length == 0
+              (Object.values(userPets).flatMap((petCategory) => petCategory)
+                .length == 0 &&
+                Object.values(userAlienPets).flatMap(
+                  (petCategory) => petCategory,
+                ).length == 0)
             }
             onClick={handleRollMutation}
             sx={{ textWrap: "nowrap" }}

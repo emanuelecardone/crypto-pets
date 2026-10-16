@@ -204,7 +204,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
       Object.values(userAlienPets).forEach((petArray) => {
         petArray.forEach((pet: any) => {
-          totalGems += pet.earnings || 0;
+          let petEarnings = pet.earnings || 0;
+
+          if (pet.mutation) {
+            petEarnings += pet.earnings * pet.mutation.bonusMultiplier;
+            console.log("1", pet.mutation.bonusMultiplier);
+          }
+
+          totalGems += petEarnings;
         });
       });
 
@@ -219,7 +226,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [userAlienPets, userUpgrades.extraGems.currentBonus]);
+  }, [userAlienPets, userUpgrades]);
 
   useEffect(() => {
     const interval = setInterval(() => {
