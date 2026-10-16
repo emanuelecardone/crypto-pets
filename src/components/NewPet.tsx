@@ -14,6 +14,7 @@ import {
 import { Pet } from "../types/pets";
 import { relative } from "path";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   pet: Pet | null;
@@ -32,6 +33,7 @@ const NewPet = ({
 }: Props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
+  const { t } = useTranslation();
   return pet ? (
     <Card
       className="album-card"
@@ -87,23 +89,26 @@ const NewPet = ({
           </ListItem>
           <ListItem sx={{ ...listItemsSx }}>
             <Typography variant="h5">
-              {isMobile ? "" : "Rarity:"} {pet.rarity}
+              {isMobile ? "" : t("pets.rarity") + ":"}{" "}
+              {t("pets.rarities." + pet.rarity.toLowerCase())}
             </Typography>
           </ListItem>
           {isMobile ? null : (
             <ListItem sx={{ ...listItemsSx }}>
-              <Typography variant="h5">Value: {pet.baseValue}</Typography>
+              <Typography variant="h5">
+                {t("pets.value")}: {pet.baseValue}
+              </Typography>
             </ListItem>
           )}
           <ListItem sx={{ ...listItemsSx }}>
             <Typography variant="h5">
               {isZoo
-                ? (isMobile ? "" : "Current earnings: ") +
+                ? (isMobile ? "" : t("pets.currentEarnings") + ": ") +
                   (pet.mutation
                     ? pet.earnings + pet.earnings * pet.mutation.bonusMultiplier
                     : pet.earnings) +
                   "/s"
-                : (isMobile ? "" : "Base earnings: ") +
+                : (isMobile ? "" : t("pets.baseEarnings") + ": ") +
                   pet.earnings +
                   "/s"}
             </Typography>
@@ -142,7 +147,7 @@ const NewPet = ({
                   fontWeight: "bold",
                 }}
               >
-                {pet.mutation?.name ?? "None"}
+                {pet.mutation ? t("lab." + pet.mutation?.name) : "None"}
               </Typography>
             )}
           </Box>
@@ -167,7 +172,7 @@ const NewPet = ({
           textAlign: "center",
         }}
       >
-        <Typography variant="h4">Not obtained</Typography>
+        <Typography variant="h4">{t("pets.notObtained")}</Typography>
       </Box>
     </Card>
   ) : (

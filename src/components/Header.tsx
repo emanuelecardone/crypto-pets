@@ -8,11 +8,13 @@ import {
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "./ThemeToggle";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const { userWallet, userGems, isSpace, setIsSpace } = useApp();
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -39,11 +41,12 @@ const Header = () => {
         }}
       >
         <Typography variant="h5">
-          {isMobile ? "" : "Cash: "} {userWallet.toFixed(2)}$
+          {isMobile ? "" : t("home.userInfo.cash") + ": "}{" "}
+          {userWallet.toFixed(2)}$
         </Typography>
         <Typography variant="h5">
-          {isMobile ? "" : "Gems: "} {userGems.toFixed(2)}
-          {isMobile ? "Gems" : ""}
+          {isMobile ? "" : t("home.userInfo.gems") + ": "} {userGems.toFixed(2)}
+          {isMobile ? t("home.userInfo.gems") : ""}
         </Typography>
       </Box>
       <Box

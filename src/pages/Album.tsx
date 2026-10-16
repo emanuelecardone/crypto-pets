@@ -7,11 +7,13 @@ import { useApp } from "../context/AppContext";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { alienPetSpecies } from "../data/alienPets";
+import { useTranslation } from "react-i18next";
 
 const Album = () => {
   const { userPets, userAlienPets, isSpace } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
   const [currentPetsNames, setCurrentPetsNames] = useState<string[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const currentPetsObj = isAlien ? userAlienPets : userPets;
@@ -39,7 +41,7 @@ const Album = () => {
         }}
       >
         <Typography variant="h2" sx={{ color: "secondary.main" }}>
-          Album
+          {t("album.album")}
         </Typography>
       </Box>
 
@@ -62,7 +64,7 @@ const Album = () => {
             transition: "color 0.3s ease",
           }}
         >
-          Earth 🌍
+          {t("pets.earth")} 🌍
         </Typography>
 
         <Switch
@@ -84,7 +86,7 @@ const Album = () => {
             transition: "color 0.3s ease",
           }}
         >
-          Alien 👽
+          {t("pets.alien")} 👽
         </Typography>
       </Box>
 

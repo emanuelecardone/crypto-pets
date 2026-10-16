@@ -17,6 +17,7 @@ import { useState } from "react";
 import NewPet from "../components/NewPet";
 import Header from "../components/Header";
 import PetHatched from "../components/PetHatched";
+import { useTranslation } from "react-i18next";
 const BASE_RARITY_ODDS: Record<string, number> = {
   common: 40,
   uncommon: 25,
@@ -47,6 +48,8 @@ const Hatchery = () => {
     userAlienPets,
     isSpace,
   } = useApp();
+
+  const { t } = useTranslation();
 
   const [newPet, setNewPet] = useState<string>("none");
   const [newPetContent, setNewPetContent] = useState<Pet | null>(null);
@@ -136,7 +139,7 @@ const Hatchery = () => {
     >
       <Header />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Hatchery
+        {t("hatchery.hatchery")}
       </Typography>
       <Box
         className="hatchery-container"
@@ -170,7 +173,13 @@ const Hatchery = () => {
               }}
             >
               <CardHeader
-                title={<Typography variant="h3">{eggInfo[0]} egg</Typography>}
+                title={
+                  <Typography variant="h3">
+                    {t("hatchery.egg") +
+                      ": " +
+                      t("pets.rarities." + eggInfo[0].toLowerCase())}
+                  </Typography>
+                }
                 sx={{ height: "20%", textAlign: "center" }}
               />
               <CardContent
@@ -191,7 +200,7 @@ const Hatchery = () => {
                   }}
                 >
                   <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
-                    Best pets
+                    {t("hatchery.bestPets")}
                   </Typography>
                   <Box
                     sx={{
@@ -234,7 +243,8 @@ const Hatchery = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: "primary.main" }}>
-                    Price: {eggInfo[1].price} {isSpace ? "gems" : "$"}
+                    {t("hatchery.price")}: {eggInfo[1].price}{" "}
+                    {isSpace ? t("home.userInfo.gems") : "$"}
                   </Typography>
                   <Button
                     variant="contained"
@@ -250,7 +260,7 @@ const Hatchery = () => {
                       )
                     }
                   >
-                    Buy
+                    {t("hatchery.buy")}
                   </Button>
                 </Box>
               </CardContent>

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchTodayAsteroidsCount } from "../fetch/nasa";
 import { useState } from "react";
 import Header from "../components/Header";
+import { useTranslation } from "react-i18next";
 
 const SpaceCenter = () => {
   const {
@@ -18,6 +19,8 @@ const SpaceCenter = () => {
     setAsteroidsBonus,
     setUserAsteroidsBonus,
   } = useApp();
+
+  const { t } = useTranslation();
 
   const ACTIVATION_COST = 1000000;
   const SPACE_TRAVEL_COST = 1000000;
@@ -73,7 +76,7 @@ const SpaceCenter = () => {
     >
       <Header />
 
-      <Typography variant="h2">Space Center</Typography>
+      <Typography variant="h2">{t("spaceCenter.spaceCenter")}</Typography>
 
       <Box className="space-center-container">
         <Box
@@ -88,7 +91,8 @@ const SpaceCenter = () => {
           }}
         >
           <Typography variant="h3">
-            NASA detected {asteroidCount && asteroidCount} asteroids today!
+            {t("spaceCenter.nasaDetected")} {asteroidCount && asteroidCount}{" "}
+            {t("spaceCenter.asteroids")}!
           </Typography>
           <Box
             sx={{
@@ -101,10 +105,10 @@ const SpaceCenter = () => {
               backgroundColor: "background.secondary",
             }}
           >
-            {isLoading && <p>Receiving data from NASA...</p>}
+            {isLoading && <p>{t("spaceCenter.receivingData")}</p>}
             {isError && (
               <Typography variant="body1">
-                Systems are offline. Cannot figure out your cosmic bonus.
+                {t("spaceCenter.systemsOffline")}
               </Typography>
             )}
 
@@ -127,20 +131,23 @@ const SpaceCenter = () => {
         {asteroidCount !== undefined && (
           <Box className="telemetry-box">
             <Typography variant="body1">
-              <strong>{asteroidCount}</strong> asteroids detected on an approach
-              trajectory today!
+              <strong>{asteroidCount}</strong>{" "}
+              {t("spaceCenter.asteroidsDetected")}
             </Typography>
             <Typography variant="body1">
-              Energetic power-up available:
+              {t("spaceCenter.powerUp")}:
               <span className="green">
-                +{potentialBonus}% to all your income
+                +{potentialBonus}% {t("spaceCenter.toYourIncome")}
               </span>
             </Typography>
             <Typography
               variant="body1"
               style={{ marginTop: "10px", marginBottom: "20px" }}
             >
-              Activation price: <strong>{ACTIVATION_COST} Cash</strong>
+              {t("spaceCenter.activationPrice")}:{" "}
+              <strong>
+                {ACTIVATION_COST} {t("home.userInfo.cash")}
+              </strong>
             </Typography>
 
             <Button
@@ -161,22 +168,23 @@ const SpaceCenter = () => {
               }}
             >
               {asteroidsBonus
-                ? "POWER-UP ACTIVE"
+                ? t("spaceCenter.powerUpActive")
                 : userWallet < ACTIVATION_COST
-                  ? "INSUFFICIENT CASH"
-                  : "ACTIVATE SPATIAL FLOW"}
+                  ? t("spaceCenter.insufficientCash")
+                  : t("spaceCenter.activate")}
             </Button>
           </Box>
         )}
         <Box className="telemetry-box">
-          <Typography variant="body1">
-            Travel to space to discover something new...
-          </Typography>
+          <Typography variant="body1">{t("spaceCenter.travel")}</Typography>
           <Typography
             variant="body1"
             style={{ marginTop: "10px", marginBottom: "20px" }}
           >
-            Travel price: <strong>{SPACE_TRAVEL_COST} Cash</strong>
+            {t("spaceCenter.travelPrice")}:{" "}
+            <strong>
+              {SPACE_TRAVEL_COST} {t("home.userInfo.cash")}
+            </strong>
           </Typography>
 
           <Button
@@ -191,8 +199,8 @@ const SpaceCenter = () => {
             }}
           >
             {userWallet < SPACE_TRAVEL_COST
-              ? "INSUFFICIENT CASH"
-              : "TRAVEL TO SPACE..."}
+              ? t("spaceCenter.insufficientCash")
+              : t("spaceCenter.travelButton")}
           </Button>
         </Box>
       </Box>

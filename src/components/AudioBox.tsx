@@ -1,10 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useApp } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const AudioBox = () => {
   const { isMusicPlaying, currentTrackIndex, toggleMusic, nextTrack } =
     useApp();
-
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -23,7 +24,7 @@ const AudioBox = () => {
           width: "100%",
         }}
       >
-        Song #{currentTrackIndex + 1}
+        {t("home.audioBox.song")} #{currentTrackIndex + 1}
       </Typography>
 
       <Box
@@ -61,7 +62,7 @@ const AudioBox = () => {
           color={isMusicPlaying ? "success" : "primary"}
           sx={{ fontWeight: "bold", flex: 1, p: 0 }}
         >
-          {isMusicPlaying ? "Pause" : "Play"}
+          {isMusicPlaying ? t("home.audioBox.pause") : t("home.audioBox.play")}
         </Button>
 
         <Button
@@ -70,7 +71,7 @@ const AudioBox = () => {
           onClick={nextTrack}
           sx={{ fontWeight: "bold", flex: 1, p: 0 }}
         >
-          Next
+          {t("home.audioBox.next")}
         </Button>
       </Box>
     </Box>

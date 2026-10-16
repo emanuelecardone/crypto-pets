@@ -2,17 +2,19 @@ import { Box, Button, Typography } from "@mui/material";
 import "./tutorial.css";
 import { useApp } from "../context/AppContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Tutorial = () => {
   const { tutorial, setTutorialWatched } = useApp();
   const [currentTutorial, setCurrentTutorial] = useState<number>(0);
+  const { t } = useTranslation();
   return (
     <Box
       className="tutorial"
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Tutorial
+        {t("tutorial.tutorial")}
       </Typography>
       <Box className="tutorial-container">
         <Box
@@ -27,7 +29,9 @@ const Tutorial = () => {
             p: 4,
           }}
         >
-          <Typography variant="h5">{tutorial[currentTutorial]}</Typography>
+          <Typography variant="h5">
+            {t(`tutorial.content.${Object.keys(tutorial)[currentTutorial]}`)}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -46,7 +50,7 @@ const Tutorial = () => {
               );
             }}
           >
-            Previous
+            {t("tutorial.previous")}
           </Button>
 
           <Button
@@ -55,19 +59,21 @@ const Tutorial = () => {
               setTutorialWatched(true);
             }}
           >
-            Skip
+            {t("tutorial.skip")}
           </Button>
           <Button
             variant="contained"
             onClick={() => {
-              currentTutorial == tutorial.length - 1
+              currentTutorial == Object.values(tutorial).length - 1
                 ? setTutorialWatched(true)
                 : setCurrentTutorial(
                     (prevCurrentTutorial) => prevCurrentTutorial + 1,
                   );
             }}
           >
-            {currentTutorial == tutorial.length - 1 ? "Start Game" : "Next"}
+            {currentTutorial == Object.values(tutorial).length - 1
+              ? t("tutorial.startGame")
+              : t("tutorial.next")}
           </Button>
         </Box>
       </Box>

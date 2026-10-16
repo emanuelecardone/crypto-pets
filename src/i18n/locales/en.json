@@ -1,0 +1,172 @@
+{
+  "home": {
+    "title": "",
+    "userInfo": {
+      "userInfo": "User Info",
+      "cash": "Cash",
+      "gems": "Gems",
+      "rebirths": "Rebirths",
+      "cashEarnings": "Cash Earnings",
+      "gemsEarnings": "Gems Earnings",
+      "cashBonus": "Cash Bonus",
+      "gemsBonus": "Gems Bonus"
+    },
+    "userCharacters": {
+      "characters": "Characters"
+    },
+    "audioBox": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "song": "Traccia"
+    },
+    "header": {
+      "tutorial": "Tutorial",
+      "earnGems": "Earn Gems",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "gameBox": {
+      "legend": {
+        "shop": "Shop",
+        "lab": "Lab",
+        "albulm": "Album",
+        "zoo": "Zoo",
+        "spaceCenter": "Space Center",
+        "hatchery": "Hatchery"
+      }
+    }
+  },
+  "tutorial": {
+    "tutorial": "Guida",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "skip": "Salta",
+    "startGame": "Start Game",
+    "content": {
+      "welcome": "Welcome to Crypto Pets! Your ultimate goal is to hatch, evolve, and collect every single pet in the universe, chasing the rarest mutations to skyrocket your economy.",
+      "intro": "You start with 0 Cash. Move with WASD to collect the gold spawning at the bottom of the map. Use that gold to hatch your very first pet at the Hatchery (Golden Square) and unlock passive income!",
+      "shopAlbum": "Explore the map to upgrade your strategy: visit the Shop (Blue Square) to boost your global stats, and check the Album (Brown Square) to see every creature left to discover.",
+      "labZoo": "Take your pets to the Lab (White Square) to force powerful mutations that multiply their earnings. Then, visit your Zoo (Green Square) to manage your collection and track your active bonuses.",
+      "trivia": "Need gems? Click the Trivia button at the top-right to test your knowledge! Answering correctly rewards you with precious Gems, the fuel needed for cosmic expansion.",
+      "spaceCenter": "Ready to look at the stars? The Space Center (Aqua Square) pulls real-time data from NASA, granting you massive, permanent income multipliers based on real asteroids spotted today!",
+      "cosmicGate": "Once you unlock the Cosmic Gate, use your Gems to travel into Space! There, you'll explore a new map, hatch alien eggs, collect extraterrestrial species, and generate passive Cosmic Gems.",
+      "rebirth": "When your cosmic power peaks, unleash a Rebirth! You will sacrifice your current wallet and pets in exchange for a massive, permanent +20% income multiplier that stacks forever.",
+      "extra": "Manage your stats, play the cyberpunk soundtrack, or toggle the Dark/Light Mode on the right panel. That's everything. Go out and conquer the pet universe!"
+    }
+  },
+  "shop": {
+    "shop": "Shop",
+    "extraGold": "Extra Gold",
+    "increment": "Increment",
+    "buy": "Buy",
+    "maxLevelReached": "Max level reached"
+  },
+  "lab": {
+    "lab": "Lab",
+    "tryMutate": "Try to mutate a pet!",
+    "noPets": "You have no pets yet...",
+    "tryMutation": "Try Mutation",
+    "failAttempt": "Failed! Your pet did not mutate...",
+    "successAttempt": "Success! You got the mutation",
+    "odds": "Odds",
+    "fail": "Fail",
+    "obsidian": "Obsidian",
+    "toxic": "Toxic",
+    "cosmic": "Cosmic",
+    "holographic": "Holographic",
+    "primordial": "Primordial"
+  },
+  "pets": {
+    "newPet": "New pet!",
+    "alreadyOwned": "Already owned...",
+    "earth": "Earth",
+    "alien": "Alien",
+    "notObtained": "Not obtained",
+    "rarity": "Rarity",
+    "value": "Value",
+    "baseEarnings": "Base earnings",
+    "sell": "Sell",
+    "for": "For",
+    "placeInZoo": "Place in",
+    "rarities": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "legendary": "Legendary",
+      "mythic": "Mythic",
+      "astral": "Astral"
+    },
+    "petSoldFor": "Pet automatically sold for"
+  },
+  "album": {
+    "album": "Album"
+  },
+  "zoo": {
+    "zoo": "Your Zoo"
+  },
+  "spaceCenter": {
+    "spaceCenter": "Space Center",
+    "nasaDetected": "Today NASA detected",
+    "asteroids": "asteroids",
+    "asteroidsDetected": "asteroids detected on an approach trajectory today!",
+    "powerUp": "Energetic power-up available",
+    "toYourIncome": "to all your income",
+    "activationPrice": "Activation price",
+    "activate": "Activate spatial flow",
+    "travel": "Travel to space to discover something new...",
+    "travelPrice": "Travel price",
+    "travelButton": "Travel to space",
+    "receivingData": "Receiving data from NASA...",
+    "systemsOffline": "Systems are offline. Cannot figure out your cosmic bonus.",
+    "powerUpActive": "Power-Up active",
+    "noCash": "Insufficient cash",
+    "hatchery": {
+      "hatchery": "Hatchery",
+      "egg": "Egg",
+      "bestPets": "Best pets",
+      "price": "Price",
+      "buy": "Buy"
+    }
+  },
+  "hatchery": {
+    "hatchery": "Hatchery",
+    "egg": "Egg",
+    "bestPets": "Best pets",
+    "price": "Price",
+    "buy": "Buy"
+  },
+  "rebirth": {
+    "rebirth": "Rebirth",
+    "youCanRebirth": "You can rebirth using your gems, you will lose all your pets, cash, gems and shop upgrades, but you will get a permanent +20% increase over your income in cash and gems, and you will keep the Space Center asteroids bonus (if you purachased it before rebirthing)",
+    "price": "Price",
+    "rebirthButton": "Rebirth",
+    "maxRebirth": "Max rebirth reached"
+  },
+  "space": {
+    "backToEarth": "Back to Earth",
+    "alienDialog": "I lost my relic somewhere in the cave. Find it and i'll let you go ahead...",
+    "guardianDialog": "Stand where you are and be one of us, then you may proceed...",
+    "legend": {
+      "hatchery": "Hatchery",
+      "cave": "Cave",
+      "teleport": "Teleport",
+      "rebirth": "Rebirth"
+    }
+  },
+  "trivia": {
+    "trivia": "Trivia",
+    "score": "Score more correct answers than wrong ones to earn",
+    "start": "Start",
+    "choose": "Choose a category",
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "finalResults": "Final results",
+    "noWinQuiz": "You did not win the quiz...",
+    "winQuiz": "You won the quiz and earned",
+    "loadingQuestions": "Loading questions...",
+    "loadingCategories": "Loading categories...",
+    "question": "Question"
+  }
+}

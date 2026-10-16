@@ -2,12 +2,14 @@ import { Box, Typography } from "@mui/material";
 import { userCharacters } from "../data/userCharacters";
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const UserCharacters = () => {
   const { userCharacter, setUserCharacter } = useApp();
   const [selected, setSelected] = useState<number>(
     userCharacters.indexOf(userCharacter),
   );
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -26,7 +28,7 @@ const UserCharacters = () => {
         variant="h3"
         sx={{ color: "secondary.main", display: { xs: "none", md: "block" } }}
       >
-        Characters
+        {t("home.userCharacters.characters")}
       </Typography>
       <Box
         sx={{

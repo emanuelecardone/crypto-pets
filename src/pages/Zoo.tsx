@@ -5,10 +5,12 @@ import NewPet from "../components/NewPet";
 import { useApp } from "../context/AppContext";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import { useTranslation } from "react-i18next";
 
 const Zoo = () => {
   const { userWallet, userPets, userAlienPets } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -18,7 +20,7 @@ const Zoo = () => {
       <Header />
 
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Your Zoo
+        {t("zoo.zoo")}
       </Typography>
 
       <Box
@@ -40,7 +42,7 @@ const Zoo = () => {
             transition: "color 0.3s ease",
           }}
         >
-          Earth 🌍
+          {t("pets.earth")} 🌍
         </Typography>
 
         <Switch
@@ -62,7 +64,7 @@ const Zoo = () => {
             transition: "color 0.3s ease",
           }}
         >
-          Alien 👽
+          {t("pets.alien")} 👽
         </Typography>
       </Box>
 

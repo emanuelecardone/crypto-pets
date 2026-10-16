@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProvider } from "./context/AppContext"; // Importa il provider appena creato
 import App from "./App";
 import "./index.css";
+import "./i18n/config";
 
 const queryClient = new QueryClient({
   defaultOptions: {

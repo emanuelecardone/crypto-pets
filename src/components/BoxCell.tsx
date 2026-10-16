@@ -3,6 +3,7 @@ import "./boxcell.css";
 import { useApp } from "../context/AppContext";
 import { useEffect, useState } from "react";
 import { cells } from "../data/cells";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   cellIndex: number;
@@ -12,6 +13,7 @@ const BoxCell = ({ cellIndex }: Props) => {
   const { userPosition, currentGoldSpawns, userCharacter } = useApp();
   const [userIcon, setUserIcon] = useState<string>("none");
   const [goldIcon, setGoldIcon] = useState<string>("none");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (userPosition == cellIndex) {
@@ -129,7 +131,14 @@ const BoxCell = ({ cellIndex }: Props) => {
           width: "max-content",
         }}
       >
-        {legendContent}
+        {t(
+          legendContent.includes(" ")
+            ? "home.gameBox.legend." +
+                legendContent.split(" ")[0].toLowerCase() +
+                legendContent.split(" ")[1].charAt(0).toUpperCase() +
+                legendContent.split(" ")[1].slice(1)
+            : "home.gameBox.legend." + legendContent.toLowerCase(),
+        )}
       </Typography>
     </Box>
   );

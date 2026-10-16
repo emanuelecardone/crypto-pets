@@ -1,0 +1,166 @@
+{
+  "home": {
+    "title": "",
+    "userInfo": {
+      "userInfo": "Informazioni utente",
+      "cash": "Soldi",
+      "gems": "Gemme",
+      "rebirths": "Rinascite",
+      "cashEarnings": "Guadagno soldi",
+      "gemsEarnings": "Guadagno gemme",
+      "cashBonus": "Soldi Bonus",
+      "gemsBonus": "Gemme Bonus"
+    },
+    "userCharacters": {
+      "characters": "Personaggi"
+    },
+    "audioBox": {
+      "play": "Riproduci",
+      "pause": "Pausa",
+      "next": "Avanti",
+      "song": "Traccia"
+    },
+    "header": {
+      "tutorial": "Guida",
+      "earnGems": "Guadagna gemme",
+      "dark": "Notte",
+      "light": "Giorno"
+    },
+    "gameBox": {
+      "legend": {
+        "shop": "Negozio",
+        "lab": "Laboratorio",
+        "album": "Album",
+        "zoo": "Zoo",
+        "spaceCenter": "Centro Spaziale",
+        "hatchery": "Incubatrice"
+      }
+    }
+  },
+  "tutorial": {
+    "tutorial": "Guida",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "skip": "Salta",
+    "startGame": "Inizia il gioco",
+    "content": {
+      "welcome": "Benvenuto in Crypto Pets! Il tuo obiettivo è di schiudere, evolvere e raccogliere ogni singolo animale nella universo, inseguendo le mutazioni più rare per far salire la tua economia.",
+      "intro": "Inizi con 0 Soldi. Muoviti con WASD per raccogliere l'oro che spunta dal basso della mappa. Usa quell'oro per schiudere il tuo primo animale all'Incubatrice (Quadrato Dorato) e sbloccare un reddito passivo!",
+      "shopAlbum": "Esplora la mappa per migliorare la tua strategia: visita il Negozio (Quadrato Blu) per aumentare le tue statistiche globali, e controlla l'Album (Quadrato Marrone) per vedere ogni creatura rimasta da scoprire.",
+      "labZoo": "Porta i tuoi animali al Laboratorio (Quadrato Bianco) per forzare mutazioni potenti che moltiplicano i loro guadagni. Poi, visita il tuo Zoo (Quadrato Verde) per gestire la tua collezione e tracciare i tuoi bonus attivi.",
+      "trivia": "Hai bisogno di gemme? Clicca il pulsante Trivia in alto a destra per testare le tue conoscenze! Rispondendo correttamente ti premia con preziose Gemme, il carburante necessario per l'espansione cosmica.",
+      "spaceCenter": "Pronto a guardare le stelle? Il Centro Spaziale (Quadrato Acqua) estrae dati in tempo reale da NASA, concedendoti moltiplicatori di reddito massicci e permanenti basati su asteroidi reali individuati oggi!",
+      "cosmicGate": "Una volta sbloccata la Porta Cosmica, usa le tue Gemme per viaggiare nello Spazio! Lì, esplorerai una nuova mappa, schiuderai uova aliene, collezionerai specie extraterrestri e genererai Gemme Cosmiche passivi.",
+      "rebirth": "Quando la tua potenza cosmica raggiunge il picco, attiva una Rinascita! Sacrificerai il tuo portafoglio e i tuoi animali in cambio di un moltiplicatore di reddito massiccio e permanente del 20% che si accumula per sempre.",
+      "extra": "Gestisci le tue statistiche, riproduci la colonna sonora cyberpunk o attiva/disattiva la modalità Scura/Light nel pannello destro. Questo è tutto. Vai fuori e conquista l'universo degli animali!"
+    }
+  },
+  "shop": {
+    "shop": "Negozio",
+    "extraGold": "Soldi Extra",
+    "increment": "Incremento",
+    "buy": "Compra",
+    "maxLevelReached": "Livello massimo raggiunto"
+  },
+  "lab": {
+    "lab": "Laboratorio",
+    "tryMutate": "Prova a mutare un pet!",
+    "noPets": "Non hai ancora nessun pet...",
+    "tryMutation": "Prova a mutare",
+    "failAttempt": "Fallito! Il tuo pet non è mutato...",
+    "successAttempt": "Successo! Hai ottenuto la mutazione",
+    "odds": "Probabilità",
+    "fail": "Fallimento",
+    "obsidian": "Ossidiana",
+    "toxic": "Tossico",
+    "cosmic": "Cosmico",
+    "holographic": "Olografico",
+    "primordial": "Primordiale"
+  },
+  "pets": {
+    "newPet": "Nuovo pet!",
+    "alreadyOwned": "Già posseduto...",
+    "earth": "Terra",
+    "alien": "Alieno",
+    "notObtained": "Non ottenuto",
+    "rarity": "Rarità",
+    "value": "Valore",
+    "baseEarnings": "Guadagno base",
+    "currentEarnings": "Guadagno attuale",
+    "sell": "Vendi",
+    "for": "Per",
+    "placeInZoo": "Metti nello",
+    "rarities": {
+      "common": "Comune",
+      "uncommon": "Non Comune",
+      "rare": "Raro",
+      "epic": "Epico",
+      "legendary": "Leggendario",
+      "mythic": "Mitico",
+      "astral": "Astrale"
+    },
+    "petSoldFor": "Pet venduto in automatico per"
+  },
+  "album": {
+    "album": "Album"
+  },
+  "zoo": {
+    "zoo": "Il tuo Zoo"
+  },
+  "spaceCenter": {
+    "spaceCenter": "Centro Spaziale",
+    "nasaDetected": "Oggi la NASA ha rilevato",
+    "asteroids": "asteroidi",
+    "asteroidsDetected": "asteroidi rilevati in rotta di avvicinamento oggi!",
+    "powerUp": "Potenziamento energetico disponibile",
+    "toYourIncome": "a tutti i tuoi guadagni",
+    "activationPrice": "Prezzo di attivazione",
+    "activate": "Attiva flusso spaziale",
+    "travel": "Viaggia nello spazio per scoprire qualcosa di nuovo...",
+    "travelPrice": "Prezzo di viaggio",
+    "travelButton": "Viaggia nello spazio",
+    "receivingData": "Ricevendo dati dalla NASA...",
+    "systemsOffline": "I sistemi sono offline. Non è possibile formulare il tuo bonus cosmico.",
+    "powerUpActive": "Potenziamento attivo",
+    "noCash": "Soldi insufficienti"
+  },
+  "hatchery": {
+    "hatchery": "Incubatrice",
+    "egg": "Uovo",
+    "bestPets": "Migliori pet",
+    "price": "Prezzo",
+    "buy": "Compra"
+  },
+  "rebirth": {
+    "rebirth": "Rinascita",
+    "youCanRebirth": "Puoi rinascere usando le tue gemme, perderai tutti i tuoi pet, soldi, gemme e miglioramenti dello shop, ma otterrai un aumento permanente del 20% su tutti i tuoi guadagni di soldi e gemme, e terrai il bonus asteroidi del Centro Spaziale (se l'hai comprato prima di rinascere)",
+    "price": "Prezzo",
+    "rebirthButton": "Rinasci",
+    "maxRebirth": "Max rinascita raggiunta"
+  },
+  "space": {
+    "backToEarth": "Torna sulla Terra",
+    "alienDialog": "Ho perso la mia reliquia da qualche parte nella cavera, trovala e ti farò passare...",
+    "guardianDialog": "Resta dove sei e sii uno di noi, e potrai procedere...",
+    "legend": {
+      "hatchery": "Incubatrice",
+      "cave": "Caverna",
+      "teleport": "Teletrasporto",
+      "rebirth": "Rinascita"
+    }
+  },
+  "trivia": {
+    "trivia": "Trivia",
+    "score": "Ottieni più risposte corrette che sbagliate per guadagnare",
+    "start": "Inizia",
+    "choose": "Scegli una categoria",
+    "correct": "Giuste",
+    "wrong": "Sbagliate",
+    "finalResults": "Risultati finali",
+    "noWinQuiz": "Non hai vinto il quiz...",
+    "winQuiz": "Hai vinto il quiz e hai guadagnato",
+    "loadingQuestions": "Caricando domande...",
+    "loadingCategories": "Caricando categorie...",
+    "question": "Domanda"
+  }
+}

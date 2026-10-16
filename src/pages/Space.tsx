@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 import SpaceGameBox from "../components/SpaceGameBox";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "../components/ThemeToggle";
+import { useTranslation } from "react-i18next";
 
 const Space = () => {
   const { setIsSpace } = useApp();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -70,7 +72,7 @@ const Space = () => {
               padding: { xs: "6px 10px", md: "6px 16px" },
             }}
           >
-            {isMobile ? "Earth" : "Back to Earth"}
+            {isMobile ? t("pets.earth") : t("space.backToEarth")}
           </Button>
         </Link>
 
@@ -86,7 +88,9 @@ const Space = () => {
               padding: { xs: "6px 10px", md: "6px 16px" },
             }}
           >
-            {isMobile ? "Trivia" : "Trivia (earn gems!)"}
+            {isMobile
+              ? "Trivia"
+              : "Trivia " + "(" + t("home.header.earnGems") + ")"}
           </Button>
         </Link>
       </Box>

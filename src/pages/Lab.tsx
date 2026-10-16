@@ -13,6 +13,7 @@ import "./lab.css";
 import { useApp } from "../context/AppContext";
 import { useState, useRef, useEffect } from "react";
 import Header from "../components/Header";
+import { useTranslation } from "react-i18next";
 
 const Lab = () => {
   const {
@@ -26,6 +27,8 @@ const Lab = () => {
     mutationOdds,
   } = useApp();
 
+  const { t } = useTranslation();
+
   const [selectedPetName, setSelectedPetName] = useState<string>(
     Object.values(userPets).flatMap((rarityGroup) => rarityGroup).length > 0
       ? Object.values(userPets).flatMap((rarityGroup) => rarityGroup)[0].name
@@ -36,7 +39,7 @@ const Lab = () => {
         : "",
   );
 
-  const [resultText, setResultText] = useState<string>("Try to mutate a pet!");
+  const [resultText, setResultText] = useState<string>(t("lab.tryMutate"));
   const [animateText, setAnimateText] = useState<boolean>(true);
   const [disabled, setDisabled] = useState<boolean>(false);
   const MUTATION_PRICE = 20000;
@@ -75,7 +78,7 @@ const Lab = () => {
       setAnimateText(false);
       setTimeout(() => {
         setAnimateText(true);
-        setResultText("Failed! Your pet did not mutate...");
+        setResultText(t("lab.failAttempt"));
       }, 300);
 
       textTimerRef.current = setTimeout(() => {
@@ -109,7 +112,11 @@ const Lab = () => {
     setAnimateText(false);
     setTimeout(() => {
       setAnimateText(true);
-      setResultText(`Success! You got the mutation: ${selectedMutation.name}`);
+      setResultText(
+        t("lab.successAttempt") +
+          " " +
+          t("lab." + selectedMutation.name.toLowerCase()),
+      );
     }, 300);
 
     textTimerRef.current = setTimeout(() => {
@@ -193,7 +200,7 @@ const Lab = () => {
       <Header />
 
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Lab
+        {t("lab.lab")}
       </Typography>
 
       <Box className="lab-container">
@@ -240,13 +247,16 @@ const Lab = () => {
                 .flatMap((rarityGroup) => rarityGroup)
                 .map((pet: any, index: number) => (
                   <MenuItem key={"select-pet-" + index} value={pet.name}>
-                    {pet.name} {pet.mutation ? `[${pet.mutation.name}]` : ""}
+                    {pet.name}{" "}
+                    {pet.mutation
+                      ? `[${t("lab." + pet.mutation.name.toLowerCase())}]`
+                      : ""}
                   </MenuItem>
                 ))}
             </Select>
           ) : (
             <Typography variant="h5" sx={{ color: "black" }}>
-              You have no pets yet...
+              {t("lab.noPets")}
             </Typography>
           )}
 
@@ -265,7 +275,7 @@ const Lab = () => {
             onClick={handleRollMutation}
             sx={{ textWrap: "nowrap" }}
           >
-            Try Mutation (💰 {MUTATION_PRICE})
+            {t("lab.tryMutation")} (💰 {MUTATION_PRICE})
           </Button>
         </Box>
         <Box
@@ -293,13 +303,13 @@ const Lab = () => {
               display: { xs: "none", md: "block" },
             }}
           >
-            Odds
+            {t("lab.odds")}
           </Typography>
           <List>
             {Object.entries(mutationOdds).map((values, index) => (
               <ListItem key={"odd-" + index} sx={{ p: 0.5 }}>
                 <Typography variant="h4">
-                  {values[0]}: {values[1]}%
+                  {t("lab." + values[0])}: {values[1]}%
                 </Typography>
               </ListItem>
             ))}

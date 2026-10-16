@@ -13,6 +13,7 @@ import { useApp } from "../context/AppContext";
 import { Shop as ShopType } from "../types/shop";
 import { useEffect, useRef } from "react";
 import Header from "../components/Header";
+import { useTranslation } from "react-i18next";
 
 const Shop = () => {
   const {
@@ -23,6 +24,8 @@ const Shop = () => {
     userWallet,
     setUserWallet,
   } = useApp();
+
+  const { t } = useTranslation();
 
   const purchase = (upgradeKey: string, currentPrice: number) => {
     if (userWallet >= currentPrice) {
@@ -57,7 +60,7 @@ const Shop = () => {
     >
       <Header />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Shop
+        {t("shop.shop")}
       </Typography>
 
       <Box
@@ -83,7 +86,7 @@ const Shop = () => {
                       variant="h4"
                       sx={{ textTransform: "capitalize", mb: 4 }}
                     >
-                      {upgradeKey.replace(/([A-Z])/g, " $1")}{" "}
+                      {t(`shop.${upgradeKey}`)}
                     </Typography>
                   }
                 />
@@ -94,7 +97,12 @@ const Shop = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Typography variant="body2">MAX LEVEL REACHED</Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ textTransform: "uppercase" }}
+                  >
+                    {t("shop.maxLevelReached")}
+                  </Typography>
                 </CardContent>
               </Card>
             );
@@ -119,7 +127,7 @@ const Shop = () => {
                       color: "secondary.main",
                     }}
                   >
-                    {upgradeKey.replace(/([A-Z])/g, " $1")}
+                    {t(`shop.${upgradeKey}`)}
                   </Typography>
                 }
               />
@@ -132,7 +140,7 @@ const Shop = () => {
               >
                 <Box>
                   <Typography variant="h6">
-                    Increment: +{upgrade.increasePercentage}%
+                    {t("shop.increment")}: +{upgrade.increasePercentage}%
                   </Typography>
                 </Box>
               </CardContent>
@@ -143,7 +151,7 @@ const Shop = () => {
                   disabled={userWallet < currentPrice}
                   onClick={() => purchase(upgradeKey, currentPrice)}
                 >
-                  Buy (💰 {currentPrice})
+                  {t("shop.buy")} (💰 {currentPrice})
                 </Button>
               </CardActions>
             </Card>

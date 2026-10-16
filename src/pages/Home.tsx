@@ -7,11 +7,13 @@ import AudioBox from "../components/AudioBox";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "../components/ThemeToggle";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const { setTutorialWatched } = useApp();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -69,7 +71,7 @@ const Home = () => {
             padding: { xs: "6px 10px", md: "6px 16px" },
           }}
         >
-          Tutorial
+          {t("home.header.tutorial")}
         </Button>
 
         <Box sx={{ width: { xs: "40%", md: "auto" } }}>
@@ -84,7 +86,7 @@ const Home = () => {
               padding: { xs: "6px 10px", md: "6px 16px" },
             }}
           >
-            {isMobile ? "Trivia" : "Trivia (earn gems!)"}
+            {isMobile ? "Trivia" : "Trivia (" + t("home.header.earnGems") + ")"}
           </Button>
         </Link>
       </Box>

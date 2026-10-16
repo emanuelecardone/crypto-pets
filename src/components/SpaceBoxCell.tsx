@@ -3,6 +3,7 @@ import "./boxcell.css";
 import { useApp } from "../context/AppContext";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { spaceCells } from "../data/spaceCells";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   cellIndex: number;
@@ -23,6 +24,8 @@ const SpaceBoxCell = ({
     guardianPosition,
     alienRelicFound,
   } = useApp();
+
+  const { t } = useTranslation();
   const [userIcon, setUserIcon] = useState<string>("none");
   const [alienIcon, setAlienIcon] = useState<string>("none");
   const [guardianIcon, setGuardianIcon] = useState<string>("none");
@@ -143,8 +146,7 @@ const SpaceBoxCell = ({
             }}
           >
             <Typography variant="body1" sx={{ textAlign: "center" }}>
-              I lost my relic somewhere in the cave. Find it and i'll let you go
-              ahead...
+              {t("space.alienDialog")}
             </Typography>
           </Box>
         )}
@@ -166,7 +168,7 @@ const SpaceBoxCell = ({
             }}
           >
             <Typography variant="body1" sx={{ textAlign: "center" }}>
-              Stand where you are and be one of us, then you may proceed...
+              {t("space.guardianDialog")}
             </Typography>
           </Box>
         )}
@@ -225,7 +227,7 @@ const SpaceBoxCell = ({
           width: "max-content",
         }}
       >
-        {legendContent}
+        {t("space.legend." + legendContent.toLowerCase())}
       </Typography>
     </Box>
   );

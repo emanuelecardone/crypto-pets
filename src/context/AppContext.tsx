@@ -29,8 +29,8 @@ import { rebirths as allRebirths } from "../data/rebirths";
 interface AppState {
   tutorialWatched: boolean;
   setTutorialWatched: Dispatch<SetStateAction<boolean>>;
-  tutorial: string[];
-  setTutorial: Dispatch<SetStateAction<string[]>>;
+  tutorial: { [key: string]: string };
+  setTutorial: Dispatch<SetStateAction<{ [key: string]: string }>>;
   isSpace: boolean;
   setIsSpace: Dispatch<SetStateAction<boolean>>;
   userCharacter: string;
@@ -101,7 +101,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [tutorialWatched, setTutorialWatched] = useState<boolean>(false);
   const [userCharacter, setUserCharacter] = useState<string>(userCharacters[0]);
-  const [tutorial, setTutorial] = useState<string[]>(tutorialTexts);
+  const [tutorial, setTutorial] = useState<{ [key: string]: string }>(
+    tutorialTexts,
+  );
   const [isSpace, setIsSpace] = useState<boolean>(false);
   const [alienRelicFound, setAlienRelicFound] = useState<boolean>(false);
   const [guardianEnigmaSolved, setGuardianEnigmaSolved] =

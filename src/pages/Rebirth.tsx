@@ -4,6 +4,7 @@ import { useApp } from "../context/AppContext";
 import Header from "../components/Header";
 import { shop } from "../data/shop";
 import { userPets } from "../data/userPets";
+import { useTranslation } from "react-i18next";
 
 const Rebirth = () => {
   const {
@@ -29,6 +30,8 @@ const Rebirth = () => {
     setUserGemsEarnings,
     rebirths,
   } = useApp();
+
+  const { t } = useTranslation();
 
   const handleRebirth = () => {
     if (userGems < products[currentRebirth]) {
@@ -77,7 +80,7 @@ const Rebirth = () => {
       <Header />
 
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
-        Rebirth
+        {t("rebirth.rebirth")}
       </Typography>
 
       <Box
@@ -85,10 +88,7 @@ const Rebirth = () => {
         sx={{ backgroundColor: "background.secondary" }}
       >
         <Typography variant="h4" sx={{ textAlign: "center" }}>
-          You can rebirth using your gems, you will lose all your pets, cash,
-          gems and shop upgrades, but you will get a permanent +20% increase
-          over your income in cash and gems, and you will keep the Space Center
-          asteroids bonus (if you purachased it before rebirthing)
+          {t("rebirth.youCanRebirth")}
         </Typography>
         <Box
           sx={{
@@ -102,10 +102,11 @@ const Rebirth = () => {
         >
           {currentRebirth < products.length ? (
             <Typography variant="h5" sx={{ textAlign: "center" }}>
-              Price: {products[currentRebirth]} gems{" "}
+              {t("rebirth.price")}: {products[currentRebirth]}{" "}
+              {t("home.userInfo.gems")}
             </Typography>
           ) : (
-            <Typography variant="h5">Max rebirth reached</Typography>
+            <Typography variant="h5">{t("rebirth.maxRebirth")}</Typography>
           )}
 
           {currentRebirth < products.length && (
@@ -114,7 +115,7 @@ const Rebirth = () => {
               disabled={userGems < products[currentRebirth]}
               onClick={handleRebirth}
             >
-              Rebirth
+              {t("rebirth.rebirthButton")}
             </Button>
           )}
         </Box>

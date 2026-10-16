@@ -1,8 +1,10 @@
 import { Box, Switch, Typography } from "@mui/material";
 import { useApp } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const ThemeToggle = () => {
   const { darkMode, setDarkMode } = useApp();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -22,7 +24,7 @@ const ThemeToggle = () => {
         color={!darkMode ? "text.primary" : "text.secondary"}
         sx={{ fontWeight: "bold", transition: "color 0.3s ease" }}
       >
-        Light ☀️
+        {t("home.header.light")} ☀️
       </Typography>
 
       <Switch
@@ -36,7 +38,7 @@ const ThemeToggle = () => {
         color={darkMode ? "text.primary" : "text.secondary"}
         sx={{ fontWeight: "bold", transition: "color 0.3s ease" }}
       >
-        Dark 🌙
+        {t("home.header.dark")} 🌙
       </Typography>
     </Box>
   );

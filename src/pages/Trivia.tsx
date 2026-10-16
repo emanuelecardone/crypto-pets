@@ -8,6 +8,7 @@ import { shuffleArray } from "../utilities/arrayShuffle";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { useApp } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const Trivia = () => {
   const [started, setStarted] = useState<boolean>(false);
@@ -26,6 +27,8 @@ const Trivia = () => {
       extraGems: { currentBonus },
     },
   } = useApp();
+
+  const { t } = useTranslation();
 
   const {
     data: categories,
@@ -104,7 +107,7 @@ const Trivia = () => {
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
       <Header />
-      <Typography variant="h2">Trivia</Typography>
+      <Typography variant="h2">{t("trivia.trivia")}</Typography>
 
       <Box className="trivia-container">
         {!started ? (
@@ -120,8 +123,7 @@ const Trivia = () => {
             }}
           >
             <Typography variant="h3">
-              Score more correct answers than wrong ones to earn 5 (+{" "}
-              {(5 / 100) * currentBonus}) gems!
+              {t("trivia.score")} 5 (+ {(5 / 100) * currentBonus}) gems!
             </Typography>
             <Button
               variant="contained"
@@ -129,7 +131,7 @@ const Trivia = () => {
                 setStarted(true);
               }}
             >
-              Start
+              {t("trivia.start")}
             </Button>
           </Box>
         ) : categoryIsChosen ? (
@@ -149,16 +151,22 @@ const Trivia = () => {
                   gap: "30px",
                 }}
               >
-                <Typography variant="h3">Final results:</Typography>
                 <Typography variant="h3">
-                  Correct: {correct} | Wrong: {wrong}
+                  {t("trivia.finalResults")}:
+                </Typography>
+                <Typography variant="h3">
+                  {t("trivia.correct")}: {correct} | {t("trivia.wrong")}:{" "}
+                  {wrong}
                 </Typography>
                 <Typography variant="h3">
                   {correct > wrong
-                    ? "You won the quiz and earned " +
+                    ? t("trivia.winQuiz") +
+                      " " +
                       (5 + (5 / 100) * currentBonus) +
-                      " gems!"
-                    : "You did not win the quiz..."}
+                      " " +
+                      t("home.userInfo.gems") +
+                      "!"
+                    : t("trivia.noWinQuiz")}
                 </Typography>
                 <Link to={isSpace ? "/space" : "/"}>
                   <Button variant="contained">Home</Button>
@@ -177,10 +185,11 @@ const Trivia = () => {
                 }}
               >
                 <Typography variant="h3">
-                  Correct: {correct} | Wrong: {wrong}
+                  {t("trivia.correct")}: {correct} | {t("trivia.wrong")}:{" "}
+                  {wrong}
                 </Typography>
                 <Typography variant="h4">
-                  Question {currentQuestion + 1}:{" "}
+                  {t("trivia.question")} {currentQuestion + 1}:{" "}
                   {questions.results[currentQuestion].question}
                 </Typography>
                 <Box
@@ -213,7 +222,9 @@ const Trivia = () => {
               </Box>
             )
           ) : (
-            <Typography variant="h4">Loading questions...</Typography>
+            <Typography variant="h4">
+              {t("trivia.loadingQuestions")}...
+            </Typography>
           )
         ) : (
           <Box
@@ -227,7 +238,7 @@ const Trivia = () => {
               gap: "30px",
             }}
           >
-            <Typography variant="h3">Choose a category</Typography>
+            <Typography variant="h3">{t("trivia.choose")}</Typography>
             {!isLoadingCategories && categories ? (
               <Box
                 sx={{
@@ -269,7 +280,9 @@ const Trivia = () => {
                 ))}
               </Box>
             ) : (
-              <Typography variant="h4">Loading categories...</Typography>
+              <Typography variant="h4">
+                {t("trivia.loadingCategories")}...
+              </Typography>
             )}
           </Box>
         )}

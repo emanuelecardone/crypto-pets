@@ -10,6 +10,7 @@ import { Pet } from "../types/pets";
 import NewPet from "./NewPet";
 import { useApp } from "../context/AppContext";
 import { Dispatch, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   pet: Pet;
@@ -35,6 +36,8 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
     setUserGemsEarnings,
     isSpace,
   } = useApp();
+
+  const { t } = useTranslation();
 
   const handleSellPet = () => {
     if (isSpace) {
@@ -92,7 +95,7 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
           }}
         >
           <Typography variant="h3" sx={{ color: isSpace ? "white" : "black" }}>
-            {alreadyOwned ? "Already owned..." : "New pet!"}
+            {alreadyOwned ? t("pets.alreadyOwned") : t("pets.newPet")}
           </Typography>
           <NewPet
             pet={pet}
@@ -116,8 +119,8 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
           />
           {alreadyOwned ? (
             <Typography variant="h4" sx={{ color: "red", fontWeight: "bold" }}>
-              Pet automatically sold for {pet.baseValue}{" "}
-              {isSpace ? "gems" : "$"}!
+              {t("pets.petSoldFor")} {pet.baseValue}{" "}
+              {isSpace ? t("home.userInfo.gems") : "$"}!
             </Typography>
           ) : (
             <Box
@@ -133,13 +136,17 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
                 sx={{ backgroundColor: "red", p: 2 }}
                 onClick={handleSellPet}
               >
-                Sell{" "}
+                {t("pets.sell")}
                 {isMobile
                   ? ""
-                  : "for " + pet.baseValue + (isSpace ? " gems" : " $")}
+                  : " " +
+                    t("pets.for") +
+                    " " +
+                    pet.baseValue +
+                    (isSpace ? " " + t("home.userInfo.gems") : " $")}
               </Button>
               <Button variant="contained" sx={{ p: 2 }} onClick={handleKeepPet}>
-                {isMobile ? "" : "Place in "}Zoo
+                {isMobile ? "" : t("pets.placeInZoo") + " "}Zoo
               </Button>
             </Box>
           )}
