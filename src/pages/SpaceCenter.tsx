@@ -170,7 +170,7 @@ const SpaceCenter = () => {
               {asteroidsBonus
                 ? t("spaceCenter.powerUpActive")
                 : userWallet < ACTIVATION_COST
-                  ? t("spaceCenter.insufficientCash")
+                  ? t("spaceCenter.noCash")
                   : t("spaceCenter.activate")}
             </Button>
           </Box>
@@ -199,7 +199,7 @@ const SpaceCenter = () => {
             }}
           >
             {userWallet < SPACE_TRAVEL_COST
-              ? t("spaceCenter.insufficientCash")
+              ? t("spaceCenter.noCash")
               : t("spaceCenter.travelButton")}
           </Button>
         </Box>
