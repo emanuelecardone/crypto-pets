@@ -73,11 +73,13 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
     <Box
       sx={{
         width: "100%",
-        height: "100%",
+        height: "calc(100% - 100px)",
         display: display,
         justifyContent: "center",
-        alignItems: "flex-start",
+        alignItems: "center",
         position: "fixed",
+        top: "100px",
+        left: 0,
         zIndex: 5000,
         backgroundColor: "background.paper",
       }}
