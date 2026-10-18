@@ -2,7 +2,7 @@ import { SpaceCells } from "../types/spaceCells";
 
 export const spaceCells: SpaceCells = {
   buildings: {
-    hatchery: 81, //153,
+    hatchery: 153,
     cave: 231,
     door: 132,
     alien: {
@@ -17,7 +17,7 @@ export const spaceCells: SpaceCells = {
       position: 330,
       icon: "\u{269B}\u{FE0F}",
     },
-    rebirth: 121, //193,
+    rebirth: 193,
   },
   paths: {
     route: [

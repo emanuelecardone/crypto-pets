@@ -38,10 +38,10 @@
     }
   },
   "tutorial": {
-    "tutorial": "Guida",
-    "previous": "Precedente",
-    "next": "Successivo",
-    "skip": "Salta",
+    "tutorial": "Tutorial",
+    "previous": "Previous",
+    "next": "Next",
+    "skip": "Skip",
     "startGame": "Start Game",
     "content": {
       "welcome": "Welcome to Crypto Pets! Your ultimate goal is to hatch, evolve, and collect every single pet in the universe, chasing the rarest mutations to skyrocket your economy.",
@@ -86,6 +86,7 @@
     "rarity": "Rarity",
     "value": "Value",
     "baseEarnings": "Base earnings",
+    "currentEarnings": "Guadagno attuale",
     "sell": "Sell",
     "for": "For",
     "placeInZoo": "Place in",
