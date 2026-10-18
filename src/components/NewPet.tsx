@@ -147,7 +147,9 @@ const NewPet = ({
                   fontWeight: "bold",
                 }}
               >
-                {pet.mutation ? t("lab." + pet.mutation?.name) : "None"}
+                {pet.mutation
+                  ? t("lab." + pet.mutation?.name.toLowerCase())
+                  : "None"}
               </Typography>
             )}
           </Box>
