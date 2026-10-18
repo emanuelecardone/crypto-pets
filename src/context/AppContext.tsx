@@ -62,6 +62,8 @@ interface AppState {
   setUserUpgrades: Dispatch<SetStateAction<UserUpgrades>>;
   goldValue: number;
   setGoldValue: Dispatch<SetStateAction<number>>;
+  gemsValue: number;
+  setGemsValue: Dispatch<SetStateAction<number>>;
   userPets: Pets;
   setUserPets: Dispatch<SetStateAction<Pets>>;
   userAlienPets: Pets;
@@ -128,6 +130,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [userUpgrades, setUserUpgrades] =
     useState<UserUpgrades>(userAllUpgrades);
   const [goldValue, setGoldValue] = useState<number>(20);
+  const [gemsValue, setGemsValue] = useState<number>(1);
   const [userPets, setUserPets] = useState<Pets>(defaultUserPets);
   const [userAlienPets, setUserAlienPets] = useState<Pets>(defaultUserPets);
   const [userEarnings, setUserEarnings] = useState<number>(0);
@@ -237,6 +240,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       userUpgrades.extraGold.currentBonus;
 
     setGoldValue(userUpgrades.extraGold.baseValue + totalBonus);
+
+    const totalGemsBonus =
+      (userUpgrades.extraGems.baseValue / 100) *
+      userUpgrades.extraGems.currentBonus;
+    setGemsValue(userUpgrades.extraGems.baseValue + totalGemsBonus);
   }, [userUpgrades]);
 
   useEffect(() => {
@@ -312,6 +320,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setUserUpgrades,
         goldValue,
         setGoldValue,
+        gemsValue,
+        setGemsValue,
         userPets,
         setUserPets,
         userAlienPets,

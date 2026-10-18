@@ -20,6 +20,8 @@ const Trivia = () => {
   const [mixedAnswers, setMixedAnswers] = useState<string[]>([]);
   const [quizOver, setQuizOver] = useState<boolean>(false);
 
+  const QUIZ_WON_VALUE = 20;
+
   const {
     setUserGems,
     isSpace,
@@ -75,9 +77,12 @@ const Trivia = () => {
     ) {
       if (finalCorrect > finalWrong) {
         setUserGems(
-          (prevUserGems) => prevUserGems + 5 + (5 / 100) * currentBonus,
+          (prevUserGems) =>
+            prevUserGems +
+            QUIZ_WON_VALUE +
+            (QUIZ_WON_VALUE / 100) * currentBonus,
         );
-        console.log("Sorpasso riuscito! 5 gemme assegnate.");
+        console.log("Sorpasso riuscito! gemme assegnate.");
       }
 
       setQuizOver(true);
@@ -123,7 +128,8 @@ const Trivia = () => {
             }}
           >
             <Typography variant="h3">
-              {t("trivia.score")} 5 (+ {(5 / 100) * currentBonus}) gems!
+              {t("trivia.score")} {QUIZ_WON_VALUE} (+{" "}
+              {(QUIZ_WON_VALUE / 100) * currentBonus}) gems!
             </Typography>
             <Button
               variant="contained"
@@ -162,7 +168,7 @@ const Trivia = () => {
                   {correct > wrong
                     ? t("trivia.winQuiz") +
                       " " +
-                      (5 + (5 / 100) * currentBonus) +
+                      (QUIZ_WON_VALUE + (QUIZ_WON_VALUE / 100) * currentBonus) +
                       " " +
                       t("home.userInfo.gems") +
                       "!"

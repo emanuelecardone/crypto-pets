@@ -12,7 +12,7 @@ export const tutorialTexts: { [key: string]: string } = {
     "Take your pets to the Lab (White Square) to force powerful mutations that multiply their earnings. Then, visit your Zoo (Green Square) to manage your collection and track your active bonuses.",
 
   trivia:
-    "Need gems? Click the Trivia button at the top-right to test your knowledge! Answering correctly rewards you with precious Gems, the fuel needed for cosmic expansion.",
+    "Need gems? Click on asteroids going aroung the Space map or click the Trivia button at the top-right to test your knowledge! Answering correctly rewards you with precious Gems, the fuel needed for cosmic expansion.",
 
   spaceCenter:
     "Ready to look at the stars? The Space Center (Aqua Square) pulls real-time data from NASA, granting you massive, permanent income multipliers based on real asteroids spotted today!",
