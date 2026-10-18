@@ -7,9 +7,10 @@ import { useTranslation } from "react-i18next";
 
 type Props = {
   cellIndex: number;
+  id?: string;
 };
 
-const BoxCell = ({ cellIndex }: Props) => {
+const BoxCell = ({ cellIndex, id = cellIndex.toString() }: Props) => {
   const { userPosition, currentGoldSpawns, userCharacter } = useApp();
   const [userIcon, setUserIcon] = useState<string>("none");
   const [goldIcon, setGoldIcon] = useState<string>("none");
@@ -83,7 +84,7 @@ const BoxCell = ({ cellIndex }: Props) => {
                 ? textsContent[5]
                 : "";
   return (
-    <Box className="boxcell" sx={{ backgroundColor: backgroundColor }}>
+    <Box className="boxcell" id={id} sx={{ backgroundColor: backgroundColor }}>
       {/*<Box sx={{ position: "absolute", top: 0, right: 0, zIndex: 2500 }}>
         {cellIndex}
       </Box>*/}

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import "./gamebox.css";
 import { useApp } from "../context/AppContext";
 import BoxCell from "./BoxCell";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { cells } from "../data/cells";
 import { useNavigate } from "react-router-dom";
 import GamePad from "./GamePad";
@@ -24,6 +24,10 @@ const GameBox = () => {
     buildings: { shop, hatchery, album, zoo, lab, spaceCenter },
     paths: { route },
   } = cells;
+
+  const [floatingTexts, setFloatingTexts] = useState<
+    Array<{ id: number; text: string; top: string; left: string }>
+  >([]);
 
   const moveUser = useCallback(
     (key: string) => {
@@ -107,10 +111,40 @@ const GameBox = () => {
   useEffect(() => {
     if (currentGoldSpawns.includes(userPosition)) {
       console.log(`Raccolto oro nella cella attuale: ${userPosition}`);
+
       setCurrentGoldSpawns((prevSpawns) =>
         prevSpawns.filter((spawnIndex) => spawnIndex !== userPosition),
       );
       setUserWallet((prevWallet) => prevWallet + goldValue);
+
+      const currentCellElement = document.getElementById(
+        `cell-${userPosition}`,
+      );
+
+      if (currentCellElement) {
+        const centroX =
+          currentCellElement.offsetLeft + currentCellElement.offsetWidth / 2;
+        const centroY =
+          currentCellElement.offsetTop + currentCellElement.offsetHeight / 2;
+
+        const clickTop = centroY - 20 + "px";
+        const clickLeft = centroX + "px";
+        const textId = Date.now() + Math.random();
+
+        setFloatingTexts((prev) => [
+          ...prev,
+          {
+            id: textId,
+            text: `+${goldValue.toFixed(0)} $`,
+            top: clickTop,
+            left: clickLeft,
+          },
+        ]);
+
+        setTimeout(() => {
+          setFloatingTexts((prev) => prev.filter((t) => t.id !== textId));
+        }, 1500);
+      }
     }
   }, [
     userPosition,
@@ -132,10 +166,44 @@ const GameBox = () => {
       }}
     >
       {Array.from({ length: totalCells }).map((_, index) => (
-        <BoxCell key={"cell-" + index} cellIndex={index} />
+        <BoxCell key={"cell-" + index} id={`cell-${index}`} cellIndex={index} />
       ))}
 
       <GamePad onMove={moveUser} />
+
+      {floatingTexts.map((textObj) => (
+        <Box
+          key={textObj.id}
+          sx={{
+            position: "absolute",
+            top: textObj.top,
+            left: textObj.left,
+            zIndex: 4100,
+            pointerEvents: "none",
+            fontWeight: "bold",
+            fontSize: "20px",
+            color: "#2cbf04",
+            textShadow: "0px 0px 8px rgba(0,229,255,0.8)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+
+            animation: "floatUpCentrato 1.5s ease-out forwards",
+            "@keyframes floatUpCentrato": {
+              "0%": {
+                transform: "translate(-50%, -50%) scale(1)",
+                opacity: 1,
+              },
+              "100%": {
+                transform: "translate(-50%, -150%) scale(1.2)",
+                opacity: 0,
+              },
+            },
+          }}
+        >
+          {textObj.text}
+        </Box>
+      ))}
     </Box>
   );
 };
