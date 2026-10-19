@@ -217,7 +217,11 @@ const Lab = () => {
   return (
     <Box
       className="lab"
-      sx={{ backgroundColor: "background.paper", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.paper",
+        color: "primary.main",
+        pb: { xs: "20px", md: "150px" },
+      }}
     >
       <Header interactiveTutorialStep={interactiveTutorialStep} />
 

@@ -109,7 +109,11 @@ const Trivia = () => {
   return (
     <Box
       className="trivia"
-      sx={{ backgroundColor: "background.paper", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.paper",
+        color: "primary.main",
+        pb: { xs: "20px", md: "150px" },
+      }}
     >
       <Header />
       <Typography variant="h2">{t("trivia.trivia")}</Typography>

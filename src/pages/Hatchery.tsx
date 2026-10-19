@@ -149,7 +149,11 @@ const Hatchery = () => {
   return (
     <Box
       className="hatchery"
-      sx={{ backgroundColor: "background.paper", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.paper",
+        color: "primary.main",
+        pb: { xs: "20px", md: "150px" },
+      }}
     >
       <Header interactiveTutorialStep={interactiveTutorialStep} />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
@@ -157,139 +161,148 @@ const Hatchery = () => {
       </Typography>
       <Box
         className="hatchery-container"
-        sx={{ backgroundColor: "background.secondary", overflowY: "auto" }}
+        sx={{
+          backgroundColor: "background.secondary",
+          overflowY: "auto",
+          display: newPet == "flex" ? "none" : "flex",
+        }}
       >
-        {Object.entries(isSpace ? alienEggs : eggs).map((eggInfo) => {
-          return (
-            <Card
-              key={eggInfo[0]}
-              sx={{
-                width: { xs: "calc(100% - 20px)", md: "calc(25% - 20px)" },
-                height: "45%",
-                textTransform: "capitalize",
-                border: "2px solid cyan",
-                color: eggInfo[0] === "common" ? "black" : "white",
-                p: 0,
-                backgroundColor:
-                  eggInfo[0] === "common"
-                    ? "white"
-                    : eggInfo[0] === "uncommon"
-                      ? "green"
-                      : eggInfo[0] === "rare"
-                        ? "blue"
-                        : eggInfo[0] === "epic"
-                          ? "purple"
-                          : eggInfo[0] === "legendary"
-                            ? "gold"
-                            : eggInfo[0] === "mythic"
-                              ? "red"
-                              : "darkblue",
-                zIndex:
-                  !interactiveTutorialFinished &&
-                  currentInteractiveTutorial == 1 &&
-                  interactiveTutorialStep == 2 &&
-                  eggInfo[0] == "common"
-                    ? 120000
-                    : 1,
-              }}
-            >
-              <CardHeader
-                title={
-                  <Typography variant="h3">
-                    {t("hatchery.egg") +
-                      ": " +
-                      t("pets.rarities." + eggInfo[0].toLowerCase())}
-                  </Typography>
-                }
-                sx={{ height: "20%", textAlign: "center" }}
-              />
-              <CardContent
+        <Box className="hatchery-eggs-container">
+          {Object.entries(isSpace ? alienEggs : eggs).map((eggInfo) => {
+            return (
+              <Card
+                key={eggInfo[0]}
                 sx={{
-                  height: "80%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  width: { xs: "calc(100% - 20px)", md: "calc(25% - 20px)" },
+                  height: "45%",
+                  textTransform: "capitalize",
+                  border: "2px solid cyan",
+                  color: eggInfo[0] === "common" ? "black" : "white",
+                  p: 0,
+                  backgroundColor:
+                    eggInfo[0] === "common"
+                      ? "white"
+                      : eggInfo[0] === "uncommon"
+                        ? "green"
+                        : eggInfo[0] === "rare"
+                          ? "blue"
+                          : eggInfo[0] === "epic"
+                            ? "purple"
+                            : eggInfo[0] === "legendary"
+                              ? "gold"
+                              : eggInfo[0] === "mythic"
+                                ? "red"
+                                : "darkblue",
+                  zIndex:
+                    !interactiveTutorialFinished &&
+                    currentInteractiveTutorial == 1 &&
+                    interactiveTutorialStep == 2 &&
+                    eggInfo[0] == "common"
+                      ? 120000
+                      : 1,
                 }}
               >
-                <Box
+                <CardHeader
+                  title={
+                    <Typography variant="h3">
+                      {t("hatchery.egg") +
+                        ": " +
+                        t("pets.rarities." + eggInfo[0].toLowerCase())}
+                    </Typography>
+                  }
+                  sx={{ height: "20%", textAlign: "center" }}
+                />
+                <CardContent
                   sx={{
-                    width: "100%",
-                    height: "60%",
-                    overflowY: "auto",
-                    display: { xs: "none", md: "block" },
+                    height: "80%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
-                    {t("hatchery.bestPets")}
-                  </Typography>
                   <Box
                     sx={{
                       width: "100%",
-                      overflow: "auto",
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "10px",
+                      height: "60%",
+                      overflowY: "auto",
+                      display: { xs: "none", md: "block" },
                     }}
                   >
-                    {eggInfo[1].pets.map((pet, petIndex) => (
-                      <Box
-                        key={petIndex}
-                        sx={{
-                          width: "calc(20% - 20px)",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          backgroundColor: "background.paper",
-                          py: 1,
-                          borderRadius: "5px",
-                        }}
-                      >
-                        {pet.emoji}
-                      </Box>
-                    ))}
+                    <Typography
+                      variant="h5"
+                      sx={{ textAlign: "center", mb: 2 }}
+                    >
+                      {t("hatchery.bestPets")}
+                    </Typography>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        overflow: "auto",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "10px",
+                      }}
+                    >
+                      {eggInfo[1].pets.map((pet, petIndex) => (
+                        <Box
+                          key={petIndex}
+                          sx={{
+                            width: "calc(20% - 20px)",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "background.paper",
+                            py: 1,
+                            borderRadius: "5px",
+                          }}
+                        >
+                          {pet.emoji}
+                        </Box>
+                      ))}
+                    </Box>
                   </Box>
-                </Box>
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: { xs: "100%", md: "30%" },
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "background.paper",
-                    borderRadius: "5px",
-                    color: "black",
-                  }}
-                >
-                  <Typography variant="h6" sx={{ color: "primary.main" }}>
-                    {t("hatchery.price")}: {eggInfo[1].price}{" "}
-                    {isSpace ? t("home.userInfo.gems") : "$"}
-                  </Typography>
-                  <Button
-                    variant="contained"
+                  <Box
                     sx={{
-                      width: "40%",
+                      width: "100%",
+                      height: { xs: "100%", md: "30%" },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: "background.paper",
+                      borderRadius: "5px",
+                      color: "black",
                     }}
-                    disabled={
-                      (isSpace ? userGems : userWallet) < eggInfo[1].price
-                    }
-                    onClick={() =>
-                      purchase(
-                        eggInfo[0] as keyof typeof userPets,
-                        eggInfo[1].price,
-                        eggInfo[1].pets,
-                      )
-                    }
                   >
-                    {t("hatchery.buy")}
-                  </Button>
-                </Box>
-              </CardContent>
-            </Card>
-          );
-        })}
+                    <Typography variant="h6" sx={{ color: "primary.main" }}>
+                      {t("hatchery.price")}: {eggInfo[1].price}{" "}
+                      {isSpace ? t("home.userInfo.gems") : "$"}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        width: "40%",
+                      }}
+                      disabled={
+                        (isSpace ? userGems : userWallet) < eggInfo[1].price
+                      }
+                      onClick={() =>
+                        purchase(
+                          eggInfo[0] as keyof typeof userPets,
+                          eggInfo[1].price,
+                          eggInfo[1].pets,
+                        )
+                      }
+                    >
+                      {t("hatchery.buy")}
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </Box>
       </Box>
 
       {/* Overlay New Pet */}

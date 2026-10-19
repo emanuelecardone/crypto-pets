@@ -94,7 +94,11 @@ const SpaceCenter = () => {
   return (
     <Box
       className="space-center"
-      sx={{ backgroundColor: "background.paper", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.paper",
+        color: "primary.main",
+        pb: { xs: "20px", md: "150px" },
+      }}
     >
       <Header interactiveTutorialStep={interactiveTutorialStep} />
 

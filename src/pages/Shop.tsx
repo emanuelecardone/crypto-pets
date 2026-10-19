@@ -68,7 +68,11 @@ const Shop = () => {
   return (
     <Box
       className="shop"
-      sx={{ backgroundColor: "background.paper", color: "primary.main" }}
+      sx={{
+        backgroundColor: "background.paper",
+        color: "primary.main",
+        pb: { xs: "20px", md: "150px" },
+      }}
     >
       <Header interactiveTutorialStep={interactiveTutorialStep} />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>

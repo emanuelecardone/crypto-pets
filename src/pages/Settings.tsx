@@ -13,7 +13,13 @@ import Header from "../components/Header";
 const Settings = () => {
   const { t, i18n } = useTranslation();
   return (
-    <Box className="settings" sx={{ backgroundColor: "background.paper" }}>
+    <Box
+      className="settings"
+      sx={{
+        backgroundColor: "background.paper",
+        pb: { xs: "20px", md: "150px" },
+      }}
+    >
       <Header />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
         {t("settings.settings")}
