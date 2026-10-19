@@ -116,9 +116,32 @@ const PetHatched = ({
             justifyContent: "center",
             alignItems: "center",
             gap: "20px",
+            zIndex:
+              !interactiveTutorialFinished &&
+              currentInteractiveTutorial == 1 &&
+              interactiveTutorialStep == 3
+                ? 120001
+                : 1,
           }}
         >
-          <Typography variant="h3" sx={{ color: isSpace ? "white" : "black" }}>
+          <Typography
+            variant="h3"
+            sx={{
+              color: isSpace ? "white" : "black",
+              backgroundColor:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 1 &&
+                interactiveTutorialStep == 3
+                  ? "background.paper"
+                  : "transparent",
+              p:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 1 &&
+                interactiveTutorialStep == 3
+                  ? 1
+                  : 0,
+            }}
+          >
             {alreadyOwned ? t("pets.alreadyOwned") : t("pets.newPet")}
           </Typography>
           <NewPet
@@ -159,6 +182,11 @@ const PetHatched = ({
                 variant="contained"
                 sx={{ backgroundColor: "red", p: 2 }}
                 onClick={handleSellPet}
+                disabled={
+                  !interactiveTutorialFinished &&
+                  currentInteractiveTutorial == 1 &&
+                  interactiveTutorialStep == 3
+                }
               >
                 {t("pets.sell")}
                 {isMobile

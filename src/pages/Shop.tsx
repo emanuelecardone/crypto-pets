@@ -205,7 +205,6 @@ const Shop = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 2
               ? "block"

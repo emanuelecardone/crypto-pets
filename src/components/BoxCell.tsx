@@ -164,8 +164,6 @@ const BoxCell = ({
             : "home.gameBox.legend." + legendContent.toLowerCase(),
         )}
       </Typography>
-
-      {/* INTERACTIVE TUTORIAL */}
     </Box>
   );
 };

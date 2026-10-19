@@ -127,7 +127,6 @@ const Home = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display: interactiveTutorialFinished ? "none" : "block",
           p: { xs: 2, md: 4 },
           borderRadius: "5px",

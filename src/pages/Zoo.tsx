@@ -105,6 +105,12 @@ const Zoo = () => {
                 sx={{
                   width: { xs: "calc(50% - 10px)", md: "calc(20% - 10px)" },
                   height: "calc(50% - 10px)",
+                  zIndex:
+                    !interactiveTutorialFinished &&
+                    currentInteractiveTutorial == 5 &&
+                    interactiveTutorialStep == 2
+                      ? 120000
+                      : 1,
                 }}
                 isZoo
                 listItemsSx={{ p: { xs: 0, md: 1 }, textAlign: "center" }}
@@ -141,7 +147,6 @@ const Zoo = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 5
               ? "block"

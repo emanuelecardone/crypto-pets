@@ -130,6 +130,13 @@ const Album = () => {
                 sx={{
                   width: { xs: "calc(50% - 10px)", md: "calc(20% - 10px)" },
                   height: "calc(50% - 10px)",
+                  zIndex:
+                    !interactiveTutorialFinished &&
+                    currentInteractiveTutorial == 6 &&
+                    interactiveTutorialStep == 2 &&
+                    petIndex <= 1
+                      ? 120000
+                      : 1,
                 }}
                 listItemsSx={{ textAlign: "center", p: { xs: 0, md: 1 } }}
               />
@@ -165,7 +172,6 @@ const Album = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 6
               ? "block"

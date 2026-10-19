@@ -18,6 +18,7 @@ import NewPet from "../components/NewPet";
 import Header from "../components/Header";
 import PetHatched from "../components/PetHatched";
 import { useTranslation } from "react-i18next";
+import { petSpecies } from "../data/pets";
 const BASE_RARITY_ODDS: Record<string, number> = {
   common: 40,
   uncommon: 25,
@@ -102,10 +103,12 @@ const Hatchery = () => {
         : (eggs as any)[selectedRarity];
       const poolRaritàEstratta = targetEggData ? targetEggData.pets : eggPets;
 
-      const nextPet =
-        poolRaritàEstratta[
-          Math.floor(Math.random() * poolRaritàEstratta.length)
-        ];
+      // TUTORIAL HATCH ALWAYS PET N°2 TO SHOW BOTH IN TUTORIAL
+      const nextPet = interactiveTutorialFinished
+        ? poolRaritàEstratta[
+            Math.floor(Math.random() * poolRaritàEstratta.length)
+          ]
+        : petSpecies.common[1];
 
       const targetRarityKey = nextPet.rarity as keyof typeof userPets;
 
@@ -329,7 +332,6 @@ const Hatchery = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 1
               ? "block"

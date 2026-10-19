@@ -234,71 +234,88 @@ const Lab = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            gap: "20px",
             p: { xs: 1, md: 4 },
-            borderRadius: "5px",
-            backgroundColor: "background.secondary",
           }}
         >
-          <Grow in={animateText} timeout={500}>
-            <Typography
-              variant="h3"
-              sx={{
-                mb: { xs: 0.5, md: 3 },
-                fontWeight: "bold",
-                color: "secondary.main",
-              }}
-            >
-              {resultText}
-            </Typography>
-          </Grow>
-          {Object.values(userPets).flatMap((rarityGroup) => rarityGroup)
-            .length > 0 ||
-          Object.values(userAlienPets).flatMap((rarityGroup) => rarityGroup)
-            .length > 0 ? (
-            <Select
-              value={selectedPetName}
-              onChange={(e) => setSelectedPetName(e.target.value)}
-              sx={{
-                ".MuiOutlinedInput-notchedOutline": {
-                  borderColor: "blue",
-                },
-              }}
-            >
-              {[...Object.values(userPets), ...Object.values(userAlienPets)]
-                .flatMap((rarityGroup) => rarityGroup)
-                .map((pet: any, index: number) => (
-                  <MenuItem key={"select-pet-" + index} value={pet.name}>
-                    {pet.name}{" "}
-                    {pet.mutation
-                      ? `[${t("lab." + pet.mutation.name.toLowerCase())}]`
-                      : ""}
-                  </MenuItem>
-                ))}
-            </Select>
-          ) : (
-            <Typography variant="h5" sx={{ color: "black" }}>
-              {t("lab.noPets")}
-            </Typography>
-          )}
-
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={
-              userWallet < MUTATION_PRICE ||
-              disabled ||
-              (Object.values(userPets).flatMap((petCategory) => petCategory)
-                .length == 0 &&
-                Object.values(userAlienPets).flatMap(
-                  (petCategory) => petCategory,
-                ).length == 0)
-            }
-            onClick={handleRollMutation}
-            sx={{ textWrap: "nowrap" }}
+          <Box
+            sx={{
+              width: "50%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "20px",
+              borderRadius: "5px",
+              backgroundColor: "background.secondary",
+              zIndex:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 4 &&
+                interactiveTutorialStep == 2
+                  ? 120000
+                  : 1,
+            }}
           >
-            {t("lab.tryMutation")} (💰 {MUTATION_PRICE})
-          </Button>
+            <Grow in={animateText} timeout={500}>
+              <Typography
+                variant="h3"
+                sx={{
+                  mb: { xs: 0.5, md: 3 },
+                  fontWeight: "bold",
+                  color: "secondary.main",
+                }}
+              >
+                {resultText}
+              </Typography>
+            </Grow>
+            {Object.values(userPets).flatMap((rarityGroup) => rarityGroup)
+              .length > 0 ||
+            Object.values(userAlienPets).flatMap((rarityGroup) => rarityGroup)
+              .length > 0 ? (
+              <Select
+                value={selectedPetName}
+                onChange={(e) => setSelectedPetName(e.target.value)}
+                sx={{
+                  ".MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue",
+                  },
+                }}
+              >
+                {[...Object.values(userPets), ...Object.values(userAlienPets)]
+                  .flatMap((rarityGroup) => rarityGroup)
+                  .map((pet: any, index: number) => (
+                    <MenuItem key={"select-pet-" + index} value={pet.name}>
+                      {pet.name}{" "}
+                      {pet.mutation
+                        ? `[${t("lab." + pet.mutation.name.toLowerCase())}]`
+                        : ""}
+                    </MenuItem>
+                  ))}
+              </Select>
+            ) : (
+              <Typography variant="h5" sx={{ color: "black" }}>
+                {t("lab.noPets")}
+              </Typography>
+            )}
+
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={
+                userWallet < MUTATION_PRICE ||
+                disabled ||
+                (Object.values(userPets).flatMap((petCategory) => petCategory)
+                  .length == 0 &&
+                  Object.values(userAlienPets).flatMap(
+                    (petCategory) => petCategory,
+                  ).length == 0)
+              }
+              onClick={handleRollMutation}
+              sx={{ textWrap: "nowrap" }}
+            >
+              {t("lab.tryMutation")} (💰 {MUTATION_PRICE})
+            </Button>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -306,36 +323,51 @@ const Lab = () => {
             height: "55%",
             textTransform: "capitalize",
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            gap: "20px",
-            mt: { xs: 0, md: 6 },
             p: { xs: 1, md: 4 },
-            borderRadius: "5px",
-            backgroundColor: "background.secondary",
           }}
         >
-          <Typography
-            variant="h3"
+          <Box
             sx={{
-              fontWeight: "bold",
-              mb: 3,
-              color: "secondary.main",
-              display: { xs: "none", md: "block" },
+              width: "50%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "20px",
+              borderRadius: "5px",
+              backgroundColor: "background.secondary",
+              zIndex:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 4 &&
+                interactiveTutorialStep == 2
+                  ? 120000
+                  : 1,
             }}
           >
-            {t("lab.odds")}
-          </Typography>
-          <List>
-            {Object.entries(mutationOdds).map((values, index) => (
-              <ListItem key={"odd-" + index} sx={{ p: 0.5 }}>
-                <Typography variant="h4">
-                  {t("lab." + values[0])}: {values[1]}%
-                </Typography>
-              </ListItem>
-            ))}
-          </List>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                mb: 3,
+                color: "secondary.main",
+                display: { xs: "none", md: "block" },
+              }}
+            >
+              {t("lab.odds")}
+            </Typography>
+            <List>
+              {Object.entries(mutationOdds).map((values, index) => (
+                <ListItem key={"odd-" + index} sx={{ p: 0.5 }}>
+                  <Typography variant="h4">
+                    {t("lab." + values[0])}: {values[1]}%
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
         </Box>
       </Box>
 
@@ -367,7 +399,6 @@ const Lab = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 4
               ? "block"

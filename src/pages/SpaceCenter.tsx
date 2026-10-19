@@ -151,7 +151,23 @@ const SpaceCenter = () => {
         </Box>
 
         {asteroidCount !== undefined && (
-          <Box className="telemetry-box">
+          <Box
+            className="telemetry-box"
+            sx={{
+              zIndex:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 3 &&
+                interactiveTutorialStep == 2
+                  ? 120000
+                  : 1,
+              backgroundColor:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 3 &&
+                interactiveTutorialStep == 2
+                  ? "background.paper"
+                  : "transparent",
+            }}
+          >
             <Typography variant="body1">
               <strong>{asteroidCount}</strong>{" "}
               {t("spaceCenter.asteroidsDetected")}
@@ -197,7 +213,23 @@ const SpaceCenter = () => {
             </Button>
           </Box>
         )}
-        <Box className="telemetry-box">
+        <Box
+          className="telemetry-box"
+          sx={{
+            zIndex:
+              !interactiveTutorialFinished &&
+              currentInteractiveTutorial == 3 &&
+              interactiveTutorialStep == 2
+                ? 120000
+                : 1,
+            backgroundColor:
+              !interactiveTutorialFinished &&
+              currentInteractiveTutorial == 3 &&
+              interactiveTutorialStep == 2
+                ? "background.paper"
+                : "transparent",
+          }}
+        >
           <Typography variant="body1">{t("spaceCenter.travel")}</Typography>
           <Typography
             variant="body1"
@@ -255,7 +287,6 @@ const SpaceCenter = () => {
           zIndex: 120000,
           backgroundColor: "white",
           color: "black",
-          opacity: 0.9,
           display:
             !interactiveTutorialFinished && currentInteractiveTutorial == 3
               ? "block"
