@@ -163,11 +163,20 @@ const Hatchery = () => {
         className="hatchery-container"
         sx={{
           backgroundColor: "background.secondary",
-          overflowY: "auto",
           display: newPet == "flex" ? "none" : "flex",
         }}
       >
-        <Box className="hatchery-eggs-container">
+        <Box
+          className="hatchery-eggs-container"
+          sx={{
+            overflowY:
+              !interactiveTutorialFinished &&
+              currentInteractiveTutorial == 1 &&
+              interactiveTutorialStep == 2
+                ? "hidden"
+                : "auto",
+          }}
+        >
           {Object.entries(isSpace ? alienEggs : eggs).map((eggInfo) => {
             return (
               <Card

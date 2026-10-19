@@ -5,7 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "./ThemeToggle";
 import { useTranslation } from "react-i18next";
@@ -29,6 +29,9 @@ const Header = ({ interactiveTutorialStep = 0 }: Props) => {
     setInteractiveTutorialFinished,
   } = useApp();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const isShop: boolean = location.pathname.endsWith("/shop");
   return (
     <Box
       sx={{
@@ -71,13 +74,15 @@ const Header = ({ interactiveTutorialStep = 0 }: Props) => {
             zIndex:
               !interactiveTutorialFinished &&
               currentInteractiveTutorial == 2 &&
-              interactiveTutorialStep == 2
+              interactiveTutorialStep == 2 &&
+              isShop
                 ? 120001
                 : 1,
             backgroundColor:
               !interactiveTutorialFinished &&
               currentInteractiveTutorial == 2 &&
-              interactiveTutorialStep == 2
+              interactiveTutorialStep == 2 &&
+              isShop
                 ? "white"
                 : "transparent",
           }}
@@ -150,7 +155,8 @@ const Header = ({ interactiveTutorialStep = 0 }: Props) => {
           display:
             !interactiveTutorialFinished &&
             currentInteractiveTutorial == 2 &&
-            interactiveTutorialStep == 2
+            interactiveTutorialStep == 2 &&
+            isShop
               ? "block"
               : "none",
         }}
