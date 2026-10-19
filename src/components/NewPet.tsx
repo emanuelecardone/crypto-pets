@@ -76,7 +76,7 @@ const NewPet = ({
           justifyContent: "space-between",
           flexDirection: "column",
           height: "80%",
-          p: { xs: 0, md: 2 },
+          p: { xs: 1, md: 2 },
         }}
       >
         <List sx={{ padding: { xs: 0, md: 1 } }}>

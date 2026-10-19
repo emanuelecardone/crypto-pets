@@ -137,6 +137,7 @@ const SpaceCenter = () => {
             {asteroidCount !== undefined &&
               Array.from({ length: asteroidCount }).map((_, index) => (
                 <Box
+                  key={"asteroid" + index}
                   sx={{
                     width: "5%",
                     display: "flex",

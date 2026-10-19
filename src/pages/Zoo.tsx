@@ -101,6 +101,7 @@ const Zoo = () => {
           (rarityGroups, index) =>
             rarityGroups.map((pet, petIndex) => (
               <NewPet
+                key={"zoo_pet" + index}
                 pet={pet}
                 sx={{
                   width: { xs: "calc(50% - 10px)", md: "calc(20% - 10px)" },

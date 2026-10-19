@@ -43,6 +43,7 @@ const UserCharacters = () => {
       >
         {userCharacters.map((character, index) => (
           <Box
+            key={"character" + index}
             sx={{
               display: "flex",
               justifyContent: "center",

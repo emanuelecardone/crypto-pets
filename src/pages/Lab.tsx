@@ -231,7 +231,6 @@ const Lab = () => {
             width: "100%",
             height: "50%",
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             p: { xs: 1, md: 3 },
@@ -245,7 +244,7 @@ const Lab = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              gap: "20px",
+              gap: { xs: "5px", md: "10px" },
               borderRadius: "5px",
               backgroundColor: "background.secondary",
               zIndex:
@@ -260,7 +259,7 @@ const Lab = () => {
               <Typography
                 variant="h3"
                 sx={{
-                  mb: { xs: 0.5, md: 3 },
+                  mb: 0.5,
                   fontWeight: "bold",
                   color: "secondary.main",
                 }}
@@ -336,7 +335,7 @@ const Lab = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              gap: "20px",
+              gap: { xs: "5px", md: "10px" },
               borderRadius: "5px",
               backgroundColor: "background.secondary",
               zIndex:
@@ -361,6 +360,8 @@ const Lab = () => {
               sx={{
                 p: 0,
                 m: 0,
+                height: "70%",
+                overflowY: "auto",
               }}
             >
               {Object.entries(mutationOdds).map((values, index) => (
