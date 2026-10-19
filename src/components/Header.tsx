@@ -32,6 +32,7 @@ const Header = ({ interactiveTutorialStep = 0 }: Props) => {
   const location = useLocation();
 
   const isShop: boolean = location.pathname.endsWith("/shop");
+  const isAlbum: boolean = location.pathname.endsWith("/album");
   return (
     <Box
       sx={{
@@ -133,7 +134,8 @@ const Header = ({ interactiveTutorialStep = 0 }: Props) => {
                 ? () => {
                     setCurrentInteractiveTutorial((prev) => prev + 1);
                   }
-                : currentInteractiveTutorial == interactiveTutorial.length - 1
+                : currentInteractiveTutorial ==
+                      interactiveTutorial.length - 1 && isAlbum
                   ? () => setInteractiveTutorialFinished(true)
                   : () => {}
             }
