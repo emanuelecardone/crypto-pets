@@ -160,7 +160,8 @@ const PetHatched = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              mt: 2,
+              mt: { xs: 0, md: 2 },
+              mb: { xs: 0, md: "auto" },
               textTransform: "capitalize",
             }}
           />

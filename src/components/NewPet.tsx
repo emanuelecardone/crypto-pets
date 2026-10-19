@@ -57,6 +57,7 @@ const NewPet = ({
         cursor: "pointer",
         position: "relative",
         ...sx,
+        margin: 0,
       }}
     >
       <CardHeader
@@ -66,6 +67,7 @@ const NewPet = ({
           color: "white",
           textAlign: "center",
           height: "20%",
+          px: { xs: 0.5, md: "auto" },
         }}
       />
       <CardContent
@@ -74,14 +76,14 @@ const NewPet = ({
           justifyContent: "space-between",
           flexDirection: "column",
           height: "80%",
-          p: { xs: 1, md: 2 },
+          p: { xs: 0, md: 2 },
         }}
       >
         <List sx={{ padding: { xs: 0, md: 1 } }}>
           <ListItem
             sx={{
               justifyContent: "center",
-              mb: 2,
+              my: { xs: 0.5, md: 1 },
               ...listItemsSx,
             }}
           >

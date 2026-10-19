@@ -229,17 +229,17 @@ const Lab = () => {
         <Box
           sx={{
             width: "100%",
-            height: "45%",
+            height: "50%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            p: { xs: 1, md: 4 },
+            p: { xs: 1, md: 3 },
           }}
         >
           <Box
             sx={{
-              width: "50%",
+              width: { xs: "100%", md: "50%" },
               height: "100%",
               display: "flex",
               flexDirection: "column",
@@ -320,17 +320,17 @@ const Lab = () => {
         <Box
           sx={{
             width: "100%",
-            height: "55%",
+            height: "50%",
             textTransform: "capitalize",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            p: { xs: 1, md: 4 },
+            p: { xs: 1, md: 3 },
           }}
         >
           <Box
             sx={{
-              width: "50%",
+              width: { xs: "100%", md: "50%" },
               height: "100%",
               display: "flex",
               flexDirection: "column",
@@ -351,16 +351,20 @@ const Lab = () => {
               variant="h3"
               sx={{
                 fontWeight: "bold",
-                mb: 3,
                 color: "secondary.main",
                 display: { xs: "none", md: "block" },
               }}
             >
               {t("lab.odds")}
             </Typography>
-            <List>
+            <List
+              sx={{
+                p: 0,
+                m: 0,
+              }}
+            >
               {Object.entries(mutationOdds).map((values, index) => (
-                <ListItem key={"odd-" + index} sx={{ p: 0.5 }}>
+                <ListItem key={"odd-" + index} sx={{ p: { xs: 0, md: 0.5 } }}>
                   <Typography variant="h4">
                     {t("lab." + values[0])}: {values[1]}%
                   </Typography>
