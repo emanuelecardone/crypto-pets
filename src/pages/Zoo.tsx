@@ -8,16 +8,41 @@ import Header from "../components/Header";
 import { useTranslation } from "react-i18next";
 
 const Zoo = () => {
-  const { userWallet, userPets, userAlienPets } = useApp();
+  const {
+    userWallet,
+    userPets,
+    userAlienPets,
+    interactiveTutorialFinished,
+    setCurrentInteractiveTutorial,
+    currentInteractiveTutorial,
+  } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
   const { t } = useTranslation();
+  const [interactiveTutorialStep, setInteractiveTutorialStep] = useState(2);
+
+  useEffect(() => {
+    if (
+      !interactiveTutorialFinished &&
+      currentInteractiveTutorial == 5 &&
+      interactiveTutorialStep == 2
+    ) {
+      setTimeout(() => {
+        setInteractiveTutorialStep(3);
+      }, 5000);
+    }
+  }, [
+    interactiveTutorialStep,
+    currentInteractiveTutorial,
+    interactiveTutorialFinished,
+    setInteractiveTutorialStep,
+  ]);
 
   return (
     <Box
       className="zoo"
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
-      <Header />
+      <Header interactiveTutorialStep={interactiveTutorialStep} />
 
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
         {t("zoo.zoo")}
@@ -86,6 +111,53 @@ const Zoo = () => {
               />
             )),
         )}
+      </Box>
+
+      {/* INTERACTIVE TUTORIAL */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 5
+              ? "block"
+              : "none",
+        }}
+      ></Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: "10px", md: "50%" },
+          left: { xs: "15px", md: "calc(75% - 40px)" },
+          transform: { xs: "auto", md: "translateY(50%)" },
+          width: { xs: "calc(100% - 30px)", md: "25%" },
+          zIndex: 120000,
+          backgroundColor: "white",
+          color: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 5
+              ? "block"
+              : "none",
+          p: { xs: 2, md: 4 },
+          borderRadius: "5px",
+        }}
+      >
+        <Typography variant="h4">
+          {t(
+            "interactiveTutorial." +
+              (currentInteractiveTutorial + 1) +
+              ".step" +
+              interactiveTutorialStep,
+          )}
+        </Typography>
       </Box>
     </Box>
   );

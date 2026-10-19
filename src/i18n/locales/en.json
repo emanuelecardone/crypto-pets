@@ -55,6 +55,42 @@
       "extra": "Manage your stats, play the cyberpunk soundtrack, or toggle the Dark/Light Mode on the right panel. That's everything. Go out and conquer the pet universe!"
     }
   },
+  "interactiveTutorial": {
+    "1": {
+      "step1": "Move with W-A-S-D or the pad below. Follow the path and collect 500$"
+    },
+    "2": {
+      "step1": "Now you have enough to hatch your first egg, then you need to place your new pet in your Zoo. Click 'Home' when you are done.",
+      "step2": "Click the 'Buy' button and hatch your first pet",
+      "step3": "Place the new pet in your Zoo",
+      "step4": "Go back with the 'Home' button"
+    },
+    "3": {
+      "step1": "Now your pet is making you earn money every second. Visit the shop to buy your first upgrade.",
+      "step2": "Wait until you have 1000$, then buy your first gold upgrade",
+      "step3": "Go back with the 'Home' button"
+    },
+    "4": {
+      "step1": "Take a look at the Space Center",
+      "step2": "When you have enough money, you can activate a special bonus and travel to Space",
+      "step3": "Let's go back"
+    },
+    "5": {
+      "step1": "Check the Lab, where you can mutate your pets.",
+      "step2": "You will be able to mutate pets to increase their specific earnings",
+      "step3": "Go back"
+    },
+    "6": {
+      "step1": "Visit your Zoo.",
+      "step2": "You can see all your owned pets here, including their mutation",
+      "step3": "Back, we're almost done"
+    },
+    "7": {
+      "step1": "Finally, visit the Album",
+      "step2": "The album shows all the pets in the game and which ones you're missing",
+      "step3": "Let's go back and start to play!"
+    }
+  },
   "shop": {
     "shop": "Shop",
     "extraGold": "Extra Gold",

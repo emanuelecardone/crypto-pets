@@ -34,6 +34,7 @@ const GamePad = ({ onMove }: GamePadProps) => {
         justifyContent: "center",
         alignItems: "center",
         gap: { xs: "35px", md: "50px" },
+        zIndex: 120000,
       }}
     >
       <Box

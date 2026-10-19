@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import "./shop.css";
 import { useApp } from "../context/AppContext";
 import { Shop as ShopType } from "../types/shop";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import { useTranslation } from "react-i18next";
 
@@ -23,9 +23,13 @@ const Shop = () => {
     setShopUpgrades,
     userWallet,
     setUserWallet,
+    interactiveTutorialFinished,
+    currentInteractiveTutorial,
+    setCurrentInteractiveTutorial,
   } = useApp();
 
   const { t } = useTranslation();
+  const [interactiveTutorialStep, setInteractiveTutorialStep] = useState(2);
 
   const purchase = (upgradeKey: string, currentPrice: number) => {
     if (userWallet >= currentPrice) {
@@ -48,6 +52,14 @@ const Shop = () => {
             (userUpgrades as any)[upgradeKey].increasePercentage,
         },
       });
+
+      if (
+        !interactiveTutorialFinished &&
+        currentInteractiveTutorial == 2 &&
+        interactiveTutorialStep == 2
+      ) {
+        setInteractiveTutorialStep((prev) => prev + 1);
+      }
     } else {
       console.log("Soldi insufficienti!");
     }
@@ -58,7 +70,7 @@ const Shop = () => {
       className="shop"
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
-      <Header />
+      <Header interactiveTutorialStep={interactiveTutorialStep} />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
         {t("shop.shop")}
       </Typography>
@@ -115,6 +127,12 @@ const Shop = () => {
                 boxShadow: 3,
                 p: 4,
                 color: "primary.main",
+                zIndex:
+                  !interactiveTutorialFinished &&
+                  currentInteractiveTutorial == 2 &&
+                  interactiveTutorialStep == 2
+                    ? 120000
+                    : 1,
               }}
             >
               <CardHeader
@@ -157,6 +175,53 @@ const Shop = () => {
             </Card>
           );
         })}
+      </Box>
+
+      {/* INTERACTIVE TUTORIAL */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 2
+              ? "block"
+              : "none",
+        }}
+      ></Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: "10px", md: "50%" },
+          left: { xs: "15px", md: "calc(75% - 40px)" },
+          transform: { xs: "auto", md: "translateY(50%)" },
+          width: { xs: "calc(100% - 30px)", md: "25%" },
+          zIndex: 120000,
+          backgroundColor: "white",
+          color: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 2
+              ? "block"
+              : "none",
+          p: { xs: 2, md: 4 },
+          borderRadius: "5px",
+        }}
+      >
+        <Typography variant="h4">
+          {t(
+            "interactiveTutorial." +
+              (currentInteractiveTutorial + 1) +
+              ".step" +
+              interactiveTutorialStep,
+          )}
+        </Typography>
       </Box>
     </Box>
   );

@@ -2,7 +2,7 @@ import { UserUpgrades } from "../types/userUpgrades";
 
 export const userAllUpgrades: UserUpgrades = {
   extraGold: {
-    baseValue: 20,
+    baseValue: 100,
     increasePercentage: 20,
     currentBonus: 0,
   },

@@ -29,6 +29,10 @@ import { rebirths as allRebirths } from "../data/rebirths";
 interface AppState {
   tutorialWatched: boolean;
   setTutorialWatched: Dispatch<SetStateAction<boolean>>;
+  interactiveTutorialFinished: boolean;
+  setInteractiveTutorialFinished: Dispatch<SetStateAction<boolean>>;
+  currentInteractiveTutorial: number;
+  setCurrentInteractiveTutorial: Dispatch<SetStateAction<number>>;
   tutorial: { [key: string]: string };
   setTutorial: Dispatch<SetStateAction<{ [key: string]: string }>>;
   isSpace: boolean;
@@ -102,6 +106,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   ];
 
   const [tutorialWatched, setTutorialWatched] = useState<boolean>(false);
+  const [interactiveTutorialFinished, setInteractiveTutorialFinished] =
+    useState<boolean>(false);
+
+  const [currentInteractiveTutorial, setCurrentInteractiveTutorial] =
+    useState<number>(0);
   const [userCharacter, setUserCharacter] = useState<string>(userCharacters[0]);
   const [tutorial, setTutorial] = useState<{ [key: string]: string }>(
     tutorialTexts,
@@ -129,7 +138,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [shopUpgrades, setShopUpgrades] = useState<Shop>(shop);
   const [userUpgrades, setUserUpgrades] =
     useState<UserUpgrades>(userAllUpgrades);
-  const [goldValue, setGoldValue] = useState<number>(20);
+  const [goldValue, setGoldValue] = useState<number>(100);
   const [gemsValue, setGemsValue] = useState<number>(1);
   const [userPets, setUserPets] = useState<Pets>(defaultUserPets);
   const [userAlienPets, setUserAlienPets] = useState<Pets>(defaultUserPets);
@@ -287,8 +296,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value={{
         tutorialWatched,
         setTutorialWatched,
+        interactiveTutorialFinished,
+        setInteractiveTutorialFinished,
         tutorial,
         setTutorial,
+        currentInteractiveTutorial,
+        setCurrentInteractiveTutorial,
         userCharacter,
         setUserCharacter,
         isSpace,

@@ -10,10 +10,18 @@ import { alienPetSpecies } from "../data/alienPets";
 import { useTranslation } from "react-i18next";
 
 const Album = () => {
-  const { userPets, userAlienPets, isSpace } = useApp();
+  const {
+    userPets,
+    userAlienPets,
+    isSpace,
+    interactiveTutorialFinished,
+    setInteractiveTutorialFinished,
+    currentInteractiveTutorial,
+  } = useApp();
   const [isAlien, setIsAlien] = useState<boolean>(false);
   const [currentPetsNames, setCurrentPetsNames] = useState<string[]>([]);
   const { t } = useTranslation();
+  const [interactiveTutorialStep, setInteractiveTutorialStep] = useState(2);
 
   useEffect(() => {
     const currentPetsObj = isAlien ? userAlienPets : userPets;
@@ -25,12 +33,29 @@ const Album = () => {
     setCurrentPetsNames(allNames);
   }, [isAlien, userPets, userAlienPets]);
 
+  useEffect(() => {
+    if (
+      !interactiveTutorialFinished &&
+      currentInteractiveTutorial == 6 &&
+      interactiveTutorialStep == 2
+    ) {
+      setTimeout(() => {
+        setInteractiveTutorialStep(3);
+      }, 5000);
+    }
+  }, [
+    interactiveTutorialStep,
+    currentInteractiveTutorial,
+    interactiveTutorialFinished,
+    setInteractiveTutorialStep,
+  ]);
+
   return (
     <Box
       className="album"
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
-      <Header />
+      <Header interactiveTutorialStep={interactiveTutorialStep} />
       <Box
         sx={{
           width: "100%",
@@ -110,6 +135,53 @@ const Album = () => {
               />
             )),
         )}
+      </Box>
+
+      {/* INTERACTIVE TUTORIAL */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 6
+              ? "block"
+              : "none",
+        }}
+      ></Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: "10px", md: "50%" },
+          left: { xs: "15px", md: "calc(75% - 40px)" },
+          transform: { xs: "auto", md: "translateY(50%)" },
+          width: { xs: "calc(100% - 30px)", md: "25%" },
+          zIndex: 120000,
+          backgroundColor: "white",
+          color: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 6
+              ? "block"
+              : "none",
+          p: { xs: 2, md: 4 },
+          borderRadius: "5px",
+        }}
+      >
+        <Typography variant="h4">
+          {t(
+            "interactiveTutorial." +
+              (currentInteractiveTutorial + 1) +
+              ".step" +
+              interactiveTutorialStep,
+          )}
+        </Typography>
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ import { useEffect, useCallback, useState } from "react";
 import { cells } from "../data/cells";
 import { useNavigate } from "react-router-dom";
 import GamePad from "./GamePad";
+import { interactiveTutorial } from "../data/interactiveTutorial";
 
 const GameBox = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const GameBox = () => {
     userWallet,
     setUserWallet,
     goldValue,
+    interactiveTutorialFinished,
+    setInteractiveTutorialFinished,
+    currentInteractiveTutorial,
+    setCurrentInteractiveTutorial,
   } = useApp();
 
   const {
@@ -54,15 +59,24 @@ const GameBox = () => {
       }
 
       if (nextPosition !== null) {
-        const isRoute = route.includes(nextPosition);
-        const isShop = nextPosition === shop;
-        const isHatchery = nextPosition === hatchery;
-        const isAlbum = nextPosition === album;
-        const isZoo = nextPosition === zoo;
-        const isLab = nextPosition === lab;
-        const isSpaceCenter = nextPosition === spaceCenter;
+        const isInteractiveTutorial =
+          !interactiveTutorialFinished &&
+          interactiveTutorial[currentInteractiveTutorial].cells.includes(
+            nextPosition,
+          );
+        const isRoute =
+          route.includes(nextPosition) && interactiveTutorialFinished;
+        const isShop = nextPosition === shop && interactiveTutorialFinished;
+        const isHatchery =
+          nextPosition === hatchery && interactiveTutorialFinished;
+        const isAlbum = nextPosition === album && interactiveTutorialFinished;
+        const isZoo = nextPosition === zoo && interactiveTutorialFinished;
+        const isLab = nextPosition === lab && interactiveTutorialFinished;
+        const isSpaceCenter =
+          nextPosition === spaceCenter && interactiveTutorialFinished;
 
         if (
+          isInteractiveTutorial ||
           isRoute ||
           isShop ||
           isHatchery ||
@@ -93,6 +107,8 @@ const GameBox = () => {
       lab,
       spaceCenter,
       route,
+      currentInteractiveTutorial,
+      interactiveTutorialFinished,
     ],
   );
 
@@ -154,6 +170,22 @@ const GameBox = () => {
     setUserWallet,
   ]);
 
+  // INTERACTIVE TUTORIAL
+  useEffect(() => {
+    if (
+      userWallet >= 500 &&
+      currentInteractiveTutorial == 0 &&
+      !interactiveTutorialFinished
+    ) {
+      setCurrentInteractiveTutorial(1);
+    }
+  }, [
+    userWallet,
+    interactiveTutorialFinished,
+    currentInteractiveTutorial,
+    setCurrentInteractiveTutorial,
+  ]);
+
   return (
     <Box
       className="gamebox"
@@ -166,7 +198,12 @@ const GameBox = () => {
       }}
     >
       {Array.from({ length: totalCells }).map((_, index) => (
-        <BoxCell key={"cell-" + index} id={`cell-${index}`} cellIndex={index} />
+        <BoxCell
+          key={"cell-" + index}
+          id={`cell-${index}`}
+          cellIndex={index}
+          currentInteractiveTutorial={currentInteractiveTutorial}
+        />
       ))}
 
       <GamePad onMove={moveUser} />
@@ -178,7 +215,7 @@ const GameBox = () => {
             position: "absolute",
             top: textObj.top,
             left: textObj.left,
-            zIndex: 4100,
+            zIndex: 120000,
             pointerEvents: "none",
             fontWeight: "bold",
             fontSize: "20px",

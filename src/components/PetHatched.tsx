@@ -17,9 +17,18 @@ type Props = {
   alreadyOwned: boolean;
   display: string;
   setDisplay: Dispatch<SetStateAction<string>>;
+  interactiveTutorialStep: number;
+  setInteractiveTutorialStep: Dispatch<SetStateAction<number>>;
 };
 
-const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
+const PetHatched = ({
+  pet,
+  alreadyOwned,
+  display,
+  setDisplay,
+  interactiveTutorialStep,
+  setInteractiveTutorialStep,
+}: Props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
   const {
@@ -35,6 +44,8 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
     userGemsEarnings,
     setUserGemsEarnings,
     isSpace,
+    interactiveTutorialFinished,
+    currentInteractiveTutorial,
   } = useApp();
 
   const { t } = useTranslation();
@@ -65,7 +76,13 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
       });
       setUserEarnings(userEarnings + pet.earnings);
     }
-
+    if (
+      !interactiveTutorialFinished &&
+      currentInteractiveTutorial == 1 &&
+      interactiveTutorialStep == 3
+    ) {
+      setInteractiveTutorialStep((prev) => prev + 1);
+    }
     setDisplay("none");
   };
 
@@ -80,7 +97,12 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
         position: "fixed",
         top: "100px",
         left: 0,
-        zIndex: 5000,
+        zIndex:
+          !interactiveTutorialFinished &&
+          currentInteractiveTutorial == 1 &&
+          interactiveTutorialStep == 3
+            ? 120000
+            : 5000,
         backgroundColor: "background.paper",
       }}
     >
@@ -147,13 +169,44 @@ const PetHatched = ({ pet, alreadyOwned, display, setDisplay }: Props) => {
                     pet.baseValue +
                     (isSpace ? " " + t("home.userInfo.gems") : " $")}
               </Button>
-              <Button variant="contained" sx={{ p: 2 }} onClick={handleKeepPet}>
+              <Button
+                variant="contained"
+                sx={{
+                  p: 2,
+                  zIndex:
+                    !interactiveTutorialFinished &&
+                    currentInteractiveTutorial == 1 &&
+                    interactiveTutorialStep == 3
+                      ? 120001
+                      : 1,
+                }}
+                onClick={handleKeepPet}
+              >
                 {isMobile ? "" : t("pets.placeInZoo") + " "}Zoo
               </Button>
             </Box>
           )}
         </Box>
       </Grow>
+
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished &&
+            currentInteractiveTutorial == 1 &&
+            interactiveTutorialStep == 3
+              ? "block"
+              : "none",
+        }}
+      ></Box>
     </Box>
   );
 };

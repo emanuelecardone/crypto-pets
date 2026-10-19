@@ -12,7 +12,8 @@ const UserInfo = () => {
       extraGems,
       rebirths: { currentRebirth },
     },
-
+    currentInteractiveTutorial,
+    interactiveTutorialFinished,
     userEarnings,
     userGemsEarnings,
   } = useApp();
@@ -34,7 +35,19 @@ const UserInfo = () => {
         className="userinfocontent"
         sx={{ textAlign: "center", color: "primary.main" }}
       >
-        <Typography variant="h4">
+        <Typography
+          variant="h4"
+          sx={{
+            zIndex:
+              !interactiveTutorialFinished && currentInteractiveTutorial == 0
+                ? 120000
+                : 1,
+            backgroundColor:
+              !interactiveTutorialFinished && currentInteractiveTutorial == 0
+                ? "white"
+                : "transparent",
+          }}
+        >
           {t("home.userInfo.cash")}: {userWallet.toFixed(2)} $
         </Typography>
         <Typography variant="h4">

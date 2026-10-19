@@ -55,6 +55,42 @@
       "extra": "Gestisci le tue statistiche, riproduci la colonna sonora cyberpunk o attiva/disattiva la modalità Scura/Light nel pannello destro. Questo è tutto. Vai fuori e conquista l'universo degli animali!"
     }
   },
+  "interactiveTutorial": {
+    "1": {
+      "step1": "Muoviti con W-A-S-D o con il pad sotto. Segui il sentiero e raccogli 500$"
+    },
+    "2": {
+      "step1": "Ora hai abbastanza soldi per schiudere il tuo primo uovo, poi dovrai mettere il tuo nuovo pet nello Zoo. Clicca 'Home' quando hai finito.",
+      "step2": "Clicca sul pulsante 'Compra' e schiudi il tuo primo pet",
+      "step3": "Metti il nuovo pet nel tuo Zoo",
+      "step4": "Torna indietro con il pulsante 'Home'"
+    },
+    "3": {
+      "step1": "Ora il tuo pet ti sta facendo guadagnare soldi ogni secondo. Visita il negozio per comprare il tuo primo potenziamento.",
+      "step2": "Aspetta di avere 1000$, poi compra il tuo primo potenziamento dell'oro",
+      "step3": "Torna indietro con il pulsante 'Home'"
+    },
+    "4": {
+      "step1": "Dai un'occhiata al Centro Spaziale",
+      "step2": "Quando avrai abbastanza soldi, potrai attivare un bonus speciale e viaggiare nello Spazio",
+      "step3": "Torniamo indietro"
+    },
+    "5": {
+      "step1": "Controlla il Laboratorio, dove puoi far mutare i tuoi pet.",
+      "step2": "Potrai far mutare i pet per aumentare i loro guadagni specifici",
+      "step3": "Torna indietro"
+    },
+    "6": {
+      "step1": "Visita il tuo Zoo.",
+      "step2": "Qui puoi vedere tutti i pet in tuo possesso, incluse le loro mutazioni",
+      "step3": "Indietro, abbiamo quasi finito"
+    },
+    "7": {
+      "step1": "Infine, visita l'Album",
+      "step2": "L'album mostra tutti i pet presenti nel gioco e quelli che ti mancano",
+      "step3": "Torniamo indietro e iniziamo a giocare!"
+    }
+  },
   "shop": {
     "shop": "Negozio",
     "extraGold": "Soldi Extra",

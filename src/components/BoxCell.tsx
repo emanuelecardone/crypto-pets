@@ -4,14 +4,25 @@ import { useApp } from "../context/AppContext";
 import { useEffect, useState } from "react";
 import { cells } from "../data/cells";
 import { useTranslation } from "react-i18next";
+import { interactiveTutorial } from "../data/interactiveTutorial";
 
 type Props = {
   cellIndex: number;
   id?: string;
+  currentInteractiveTutorial?: number;
 };
 
-const BoxCell = ({ cellIndex, id = cellIndex.toString() }: Props) => {
-  const { userPosition, currentGoldSpawns, userCharacter } = useApp();
+const BoxCell = ({
+  cellIndex,
+  id = cellIndex.toString(),
+  currentInteractiveTutorial = 0,
+}: Props) => {
+  const {
+    userPosition,
+    currentGoldSpawns,
+    userCharacter,
+    interactiveTutorialFinished,
+  } = useApp();
   const [userIcon, setUserIcon] = useState<string>("none");
   const [goldIcon, setGoldIcon] = useState<string>("none");
   const { t } = useTranslation();
@@ -84,7 +95,19 @@ const BoxCell = ({ cellIndex, id = cellIndex.toString() }: Props) => {
                 ? textsContent[5]
                 : "";
   return (
-    <Box className="boxcell" id={id} sx={{ backgroundColor: backgroundColor }}>
+    <Box
+      className="boxcell"
+      id={id}
+      sx={{
+        backgroundColor: backgroundColor,
+        zIndex:
+          interactiveTutorial[currentInteractiveTutorial].cells.includes(
+            cellIndex,
+          ) && !interactiveTutorialFinished
+            ? 110000
+            : 1,
+      }}
+    >
       {/*<Box sx={{ position: "absolute", top: 0, right: 0, zIndex: 2500 }}>
         {cellIndex}
       </Box>*/}
@@ -141,6 +164,8 @@ const BoxCell = ({ cellIndex, id = cellIndex.toString() }: Props) => {
             : "home.gameBox.legend." + legendContent.toLowerCase(),
         )}
       </Typography>
+
+      {/* INTERACTIVE TUTORIAL */}
     </Box>
   );
 };

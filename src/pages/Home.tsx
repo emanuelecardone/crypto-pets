@@ -1,4 +1,10 @@
-import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import "./home.css";
 import GameBox from "../components/GameBox";
 import UserInfo from "../components/UserInfo";
@@ -8,11 +14,16 @@ import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ThemeToggle from "../components/ThemeToggle";
 import { useTranslation } from "react-i18next";
+import { interactiveTutorial } from "../data/interactiveTutorial";
 
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
-  const { setTutorialWatched } = useApp();
+  const {
+    setTutorialWatched,
+    interactiveTutorialFinished,
+    currentInteractiveTutorial,
+  } = useApp();
   const { t } = useTranslation();
 
   return (
@@ -89,6 +100,46 @@ const Home = () => {
             {isMobile ? "Trivia" : "Trivia (" + t("home.header.earnGems") + ")"}
           </Button>
         </Link>
+      </Box>
+
+      {/* INTERACTIVE TUTORIAL */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display: interactiveTutorialFinished ? "none" : "block",
+        }}
+      ></Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: "10px", md: "50%" },
+          left: { xs: "15px", md: "calc(75% - 40px)" },
+          transform: { xs: "auto", md: "translateY(50%)" },
+          width: { xs: "calc(100% - 30px)", md: "25%" },
+          zIndex: 120000,
+          backgroundColor: "white",
+          color: "black",
+          opacity: 0.9,
+          display: interactiveTutorialFinished ? "none" : "block",
+          p: { xs: 2, md: 4 },
+          borderRadius: "5px",
+        }}
+      >
+        <Typography variant="h4">
+          {t(
+            "interactiveTutorial." +
+              (currentInteractiveTutorial + 1) +
+              ".step1",
+          )}
+        </Typography>
       </Box>
     </Box>
   );

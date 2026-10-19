@@ -47,6 +47,8 @@ const Hatchery = () => {
     userPets,
     userAlienPets,
     isSpace,
+    interactiveTutorialFinished,
+    currentInteractiveTutorial,
   } = useApp();
 
   const { t } = useTranslation();
@@ -54,6 +56,8 @@ const Hatchery = () => {
   const [newPet, setNewPet] = useState<string>("none");
   const [newPetContent, setNewPetContent] = useState<Pet | null>(null);
   const [isOwned, setIsOwned] = useState<boolean>(false);
+
+  const [interactiveTutorialStep, setInteractiveTutorialStep] = useState(2);
 
   const purchase = (
     eggRarity: keyof typeof userPets,
@@ -127,6 +131,13 @@ const Hatchery = () => {
           setNewPet("none");
         }, 3000);
       }
+      if (
+        !interactiveTutorialFinished &&
+        currentInteractiveTutorial == 1 &&
+        interactiveTutorialStep == 2
+      ) {
+        setInteractiveTutorialStep((prev) => prev + 1);
+      }
     } else {
       console.log("Soldi insufficienti!");
     }
@@ -137,7 +148,7 @@ const Hatchery = () => {
       className="hatchery"
       sx={{ backgroundColor: "background.paper", color: "primary.main" }}
     >
-      <Header />
+      <Header interactiveTutorialStep={interactiveTutorialStep} />
       <Typography variant="h2" sx={{ color: "secondary.main" }}>
         {t("hatchery.hatchery")}
       </Typography>
@@ -170,6 +181,13 @@ const Hatchery = () => {
                             : eggInfo[0] === "mythic"
                               ? "red"
                               : "darkblue",
+                zIndex:
+                  !interactiveTutorialFinished &&
+                  currentInteractiveTutorial == 1 &&
+                  interactiveTutorialStep == 2 &&
+                  eggInfo[0] == "common"
+                    ? 120000
+                    : 1,
               }}
             >
               <CardHeader
@@ -248,7 +266,9 @@ const Hatchery = () => {
                   </Typography>
                   <Button
                     variant="contained"
-                    sx={{ width: "40%" }}
+                    sx={{
+                      width: "40%",
+                    }}
                     disabled={
                       (isSpace ? userGems : userWallet) < eggInfo[1].price
                     }
@@ -276,8 +296,57 @@ const Hatchery = () => {
           alreadyOwned={isOwned}
           display={newPet}
           setDisplay={setNewPet}
+          interactiveTutorialStep={interactiveTutorialStep}
+          setInteractiveTutorialStep={setInteractiveTutorialStep}
         />
       )}
+
+      {/* INTERACTIVE TUTORIAL */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 100000,
+          backgroundColor: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 1
+              ? "block"
+              : "none",
+        }}
+      ></Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: "10px", md: "50%" },
+          left: { xs: "15px", md: "calc(75% - 40px)" },
+          transform: { xs: "auto", md: "translateY(50%)" },
+          width: { xs: "calc(100% - 30px)", md: "25%" },
+          zIndex: 120000,
+          backgroundColor: "white",
+          color: "black",
+          opacity: 0.9,
+          display:
+            !interactiveTutorialFinished && currentInteractiveTutorial == 1
+              ? "block"
+              : "none",
+          p: { xs: 2, md: 4 },
+          borderRadius: "5px",
+        }}
+      >
+        <Typography variant="h4">
+          {t(
+            "interactiveTutorial." +
+              (currentInteractiveTutorial + 1) +
+              ".step" +
+              interactiveTutorialStep,
+          )}
+        </Typography>
+      </Box>
     </Box>
   );
 };
