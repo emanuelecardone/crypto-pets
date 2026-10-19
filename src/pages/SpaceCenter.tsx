@@ -155,7 +155,7 @@ const SpaceCenter = () => {
           </Box>
         </Box>
 
-        {asteroidCount !== undefined && (
+        {asteroidCount !== undefined ? (
           <Box
             className="telemetry-box"
             sx={{
@@ -216,6 +216,28 @@ const SpaceCenter = () => {
                   ? t("spaceCenter.noCash")
                   : t("spaceCenter.activate")}
             </Button>
+          </Box>
+        ) : (
+          <Box
+            className="telemetry-box"
+            sx={{
+              zIndex:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 3 &&
+                interactiveTutorialStep == 2
+                  ? 120000
+                  : 1,
+              backgroundColor:
+                !interactiveTutorialFinished &&
+                currentInteractiveTutorial == 3 &&
+                interactiveTutorialStep == 2
+                  ? "background.paper"
+                  : "transparent",
+            }}
+          >
+            <Typography variant="h3">
+              {t("spaceCenter.receivingData")}
+            </Typography>
           </Box>
         )}
         <Box
