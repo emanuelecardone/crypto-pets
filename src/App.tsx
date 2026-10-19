@@ -145,6 +145,21 @@ export default function App() {
         },
       },
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            transition: "all 0.2s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
+            "&:active": {
+              transform: "scale(0.97)",
+            },
+          },
+        },
+      },
+    },
   });
 
   return (
